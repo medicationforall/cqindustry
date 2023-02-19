@@ -1,7 +1,7 @@
-# skirmishbunker
+# cqindustry
 python Library for making Industrial terrain.
 
-![](./documentation/image/cover.png)
+![](./documentation/image/02.png)
 
 ### Example Usage
 
