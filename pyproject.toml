@@ -22,8 +22,8 @@ dependencies = [
 "cadquery==2.2.0b2",
 "numpy-stl",
 'cqmore @ git+https://github.com/JustinSDK/cqMore@a490603',
-'cadqueryhelper @ git+https://github.com/medicationforall/cadqueryhelper@0.0.8',
-'cqterrain @ git+https://github.com/medicationforall/cqterrain@0.1.2'
+'cadqueryhelper @ git+https://github.com/medicationforall/cadqueryhelper@0.1.0',
+'cqterrain @ git+https://github.com/medicationforall/cqterrain@0.1.3'
 ]
 
 
