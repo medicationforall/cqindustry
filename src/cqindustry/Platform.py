@@ -27,11 +27,16 @@ class Platform(Base):
         self.floor_tile_padding = 2
         self.floor_pading =2
 
+        self.render_ladders = True
+        self.ladder_length = 25
+        self.ladder_cut_chamfer = 2
+
         self.center_cut = None
         self.platform = None
         self.stripe_cuts = None
         self.caution_stripes = None
         self.floor_tiles = None
+        self.ladder_cuts = None
 
     def __make_platform(self):
         platform = (
@@ -161,6 +166,31 @@ class Platform(Base):
         #self.floor_tiles = outline
         self.floor_tiles = outline.intersect(floor_tiles).translate((0,0,-1))
 
+    def __make_ladder_cuts(self):
+        ladder_cut = (
+            cq.Workplane("XY")
+            .box(
+                self.ladder_length,
+                self.ladder_length,
+                self.height
+            )
+            .faces("X or -X")
+            .edges("Z")
+            .chamfer(self.ladder_cut_chamfer)
+            .translate((
+                0,
+                self.cut_diameter/2+self.ladder_length/2-4,
+                0
+            ))
+        )
+
+        ladder_cuts = (
+            cq.Workplane("XY")
+            .union(ladder_cut.rotate((0,0,1),(0,0,0),45))
+            .union(ladder_cut.rotate((0,0,1),(0,0,0),225))
+        )
+        self.ladder_cuts = ladder_cuts
+
     def make(self):
         super().make()
         self.__make_platform()
@@ -168,6 +198,9 @@ class Platform(Base):
 
         if self.render_floor:
             self.__make_floor_tiles()
+
+        if self.render_ladders:
+            self.__make_ladder_cuts()
 
         if self.render_stripes:
             self.__make_stripe_cuts()
@@ -184,6 +217,8 @@ class Platform(Base):
         if self.render_floor and self.floor_tiles:
             scene = scene.cut(self.floor_tiles)
 
+        if self.render_ladders:
+            scene = scene.cut(self.ladder_cuts)
 
         if self.render_stripes:
             if self.stripe_cuts:
