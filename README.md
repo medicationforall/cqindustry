@@ -1,7 +1,7 @@
 # cqindustry
 python Library for making Industrial terrain.
 
-![](./documentation/image/02.png)
+![](./documentation/image/03.png)
 
 ### Example Usage
 
