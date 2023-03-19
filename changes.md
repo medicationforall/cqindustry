@@ -1,7 +1,8 @@
 # CQIndustry changelog
 
 ## Main wip
-* Upped cadquery dependency version
+* Upped cadqueryhelper dependency version
+* Upped cqterrain dependency version
 
 ## 0.0.1
 * Initial release
