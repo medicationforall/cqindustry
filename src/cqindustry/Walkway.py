@@ -1,6 +1,6 @@
 import cadquery as cq
 from . import Base
-from cadqueryhelper import series, shape
+from cadqueryhelper import series, irregular_grid, shape
 import math
 
 class Walkway(Base):
@@ -12,11 +12,25 @@ class Walkway(Base):
 
         self.walkway_chamfer = 3
 
-        self.render_slots=True
+        self.render_slots=True # grid, irregular
         self.slot_length = 3
         self.slot_width_padding = 2
         self.slot_length_offset = 2
         self.slots_end_margin = 10
+
+        ## regular tiles
+        self.tile_length = 10
+        self.tile_width = 10
+        self.tile_height = 2
+        self.make_tile_method = None
+
+        ## irregular tiles
+        self.tile_max_height = self.height
+        self.tile_max_columns = 5
+        self.tile_max_rows = 5
+        self.tile_union_grid = False
+        self.tile_seed = 'test'
+        self.grid_width_padding = 2
 
         self.render_tabs = True
         self.tab_length = 5
@@ -38,7 +52,11 @@ class Walkway(Base):
         self.rail_slot_type = "box" # box, archpointed, archround
 
         self.walkway = None
+
         self.slots = None
+        self.grid = None
+        self.irregular_grid = None
+
         self.tabs = None
         self.rails = None
         self.rail_slots = None
@@ -83,6 +101,23 @@ class Walkway(Base):
         )
 
         self.slots = slots
+
+    def __make_grid(self):
+        self.grid = cq.Workplane("XY").box(20,20,20)
+
+    def __make_irregular_grid(self):
+        igrid = irregular_grid(
+            length=self.length,
+            width = self.width - (self.rail_width *2) - self.grid_width_padding,
+            height = self.tile_height,
+            make_item = self.make_tile_method,
+            max_height = self.tile_max_height,
+            max_columns = self.tile_max_columns,
+            max_rows = self.tile_max_rows,
+            union_grid = self.tile_union_grid,
+            seed = self.tile_seed
+        )
+        self.irregular_grid = igrid.translate((0,0,self.height/2))
 
     def __make_tabs(self):
         x_translate = -1*(self.length/2+self.tab_length/2)
@@ -189,8 +224,12 @@ class Walkway(Base):
         super().make()
         self.__make_walkway()
 
-        if self.render_slots:
+        if self.render_slots == True:
             self.__make_slots()
+        elif self.render_slots == 'grid':
+            self.__make_grid()
+        elif self.render_slots == 'irregular':
+            self.__make_irregular_grid()
 
         if self.render_tabs:
             self.__make_tabs()
@@ -210,6 +249,10 @@ class Walkway(Base):
 
         if self.render_slots and self.slots:
             scene = scene.cut(self.slots)
+        elif self.render_slots == 'grid' and self.grid:
+            scene = scene.add(self.grid)
+        elif self.render_slots == 'irregular' and self.irregular_grid:
+            scene = scene.add(self.irregular_grid)
 
         if self.render_tabs and self.tabs:
             scene = scene.union(self.tabs)
