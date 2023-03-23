@@ -3,6 +3,8 @@
 ## Main wip
 * Upped cadqueryhelper dependency version
 * Upped cqterrain dependency version
+* Walkway added irregular grid support
+* Walkway added grid support
 
 ## 0.0.1
 * Initial release

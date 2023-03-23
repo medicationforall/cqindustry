@@ -1,6 +1,6 @@
 import cadquery as cq
 from . import Base
-from cadqueryhelper import series, irregular_grid, shape
+from cadqueryhelper import series, grid, irregular_grid, shape
 import math
 
 class Walkway(Base):
@@ -22,6 +22,7 @@ class Walkway(Base):
         self.tile_length = 10
         self.tile_width = 10
         self.tile_height = 2
+        self.tile_padding = 1
         self.make_tile_method = None
 
         ## irregular tiles
@@ -103,7 +104,29 @@ class Walkway(Base):
         self.slots = slots
 
     def __make_grid(self):
-        self.grid = cq.Workplane("XY").box(20,20,20)
+        #self.grid = cq.Workplane("XY").box(20,20,20)
+        tile = self.make_tile_method(
+            self.tile_length - self.tile_padding,
+            self.tile_width - self.tile_padding,
+            self.tile_height
+        )
+
+        # this may be reverse
+        rows = math.floor(self.length / self.tile_length)
+        columns = math.floor((self.width - (self.grid_width_padding * 2 + self.rail_width * 2)) / self.tile_width)
+        #print(f'columns {columns} rows {rows} length {self.length}, width {self.width}')
+        #print(f'grid_width_padding {self.grid_width_padding*2} rail_width {self.rail_width*2}')
+
+
+        tiles = grid.make_grid(
+            part=tile,
+            dim=[self.tile_length, self.tile_width],
+            columns = columns,
+            rows = rows
+        )
+
+        z_translate = self.height/2 + self.tile_height/2
+        self.grid = tiles.translate((0,0,z_translate))
 
     def __make_irregular_grid(self):
         igrid = irregular_grid(
