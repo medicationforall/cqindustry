@@ -157,3 +157,24 @@ def barrier_cross(j_shape, extrude=20, faces=4, intersect=False):
     )
 
     return corner
+
+
+def cut_forklift(
+        barrier,
+        length = 75,
+        fork_length=5,
+        width=20,
+        fork_height = 2
+):
+    fork_cut = (
+        cq.Workplane("XY")
+        .box(fork_length, width, fork_height)
+        .translate((0,0,fork_height/2))
+    )
+    result = (
+        cq.Workplane("XY")
+        .add(barrier)
+        .cut(fork_cut.translate((length/4,0,0)))
+        .cut(fork_cut.translate((-1*(length/4),0,0)))
+    )
+    return result
