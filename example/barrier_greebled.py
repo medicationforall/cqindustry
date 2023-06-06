@@ -8,31 +8,14 @@ from cqindustry import (
     barrier_curved,
     barrier_diagonal,
     taper_barrier,
-    cut_forklift
+    cut_forklift,
+    cut_magnets,
+    caution_stripe
 )
 
-def cut_forklift2(
-        barrier,
-        length = 75,
-        fork_length=5,
-        width=20,
-        fork_height = 2
-):
-    fork_cut = (
-        cq.Workplane("XY")
-        .box(fork_length, width, fork_height)
-        .translate((0,0,fork_height/2))
-    )
-    result = (
-        cq.Workplane("XY")
-        .add(barrier)
-        .add(fork_cut.translate((length/4,0,0)))
-        .add(fork_cut.translate((-1*(length/4),0,0)))
-    )
-    return result
-
-barrier_height = 20
+barrier_height = 25
 barrier_width = 20
+
 
 j_shape = jersey_shape(
     width = barrier_width,
@@ -49,6 +32,9 @@ barrier = barrier_straight(
 ).translate((0,0,barrier_height/2))
 
 barrier_forks = cut_forklift(barrier)
+barrier_forks_m = cut_magnets(
+    barrier_forks,
+    y_offset=0)
 
 barrier_curve_60 = (
     barrier_curved(
@@ -68,13 +54,32 @@ barrier_curve_60_forks = cut_forklift(
     width = 80
 )
 
+barrier_curve_60_forks = (
+    barrier_curve_60_forks
+    .rotate((0,0,1),(0,0,0),30)
+    .translate((0,31,0))
+)
+
+barrier_curve_60_forks_m = cut_magnets(
+    barrier_curve_60_forks,
+    x_minus_cut=False
+).rotate((0,0,1),(0,0,0),120).translate((0,-15,0))
+
+barrier_curve_60_forks_m = cut_magnets(
+    barrier_curve_60_forks_m,
+    x_minus_cut=False
+).rotate((0,0,1),(0,0,0),-150).translate((0,-30,0))
+
 barrier_taper = taper_barrier(
     barrier,
-    length = 75,
+    length = 78,
+    height = barrier_height,
+    rotation=-16.04,
     debug = False
 )
 
 barrier_taper_forks = cut_forklift(barrier_taper)
+barrier_taper_forks_m = cut_magnets(barrier_taper_forks,x_plus_cut=False)
 
 barrier_diag_right = (
     barrier_diagonal(
@@ -88,7 +93,19 @@ barrier_diag_right = (
 
 barrier_diag_right_forks = cut_forklift(
     barrier_diag_right
+).rotate((0,0,1),(0,0,0),(53/2))
+
+barrier_diag_right_forks_m = cut_magnets(
+    barrier_diag_right_forks,
+    x_minus_cut = False,
+    y_offset = 18.5
 )
+
+barrier_diag_right_forks_m = cut_magnets(
+    barrier_diag_right_forks_m.rotate((0,0,1),(0,0,0),180),
+    x_minus_cut = False,
+    y_offset = 18.5
+).rotate((0,0,1),(0,0,0),-1*(53/2))
 
 barrier_diag_left = (
     barrier_diagonal(
@@ -102,29 +119,58 @@ barrier_diag_left = (
 
 barrier_diag_left_forks = cut_forklift(
     barrier_diag_left
+).rotate((0,0,1),(0,0,0),-1*(53/2))
+
+barrier_diag_left_forks_m = cut_magnets(
+    barrier_diag_left_forks,
+    x_minus_cut = False,
+    y_offset = -18.5
 )
 
+barrier_diag_left_forks_m = cut_magnets(
+    barrier_diag_left_forks_m.rotate((0,0,1),(0,0,0),180),
+    x_minus_cut = False,
+    y_offset = -18.5
+).rotate((0,0,1),(0,0,0),(53/2))
+
 barrier_c = barrier_cross(j_shape).translate((0,0,barrier_height/2))
+barrier_c_m = cut_magnets(barrier_c)
+barrier_c_m = cut_magnets(barrier_c_m.rotate((0,0,1),(0,0,0),90))
+
+caution = caution_stripe(length=65, width = 17, height=10)
+
+detail_cut = (
+    cq.Workplane("XY")
+    .box(65,10,17)
+)
+detailed_barrier = (
+    cq.Workplane("XY")
+    .add(barrier_forks_m.translate((0,0,-barrier_height/2)))
+    .cut(detail_cut.translate((0,0,4)))
+    .add(caution.translate((0,0,4)))
+).translate((0,0,barrier_height/2))
 
 scene = (
     cq.Workplane("XY")
-    .add(barrier_forks)
-    .add(barrier_curve_60_forks.translate((0,-8,0)))
-    .add(barrier_taper_forks.translate((0,25,0)))
-    .add(barrier_diag_right_forks.translate((0,47,0)))
-    .add(barrier_diag_left_forks.translate((0,67,0)))
-    .add(barrier_c.translate((0,-55,0)))
+    .add(barrier_c_m.translate((0,-80,0)))
+    .add(barrier_curve_60_forks_m.translate((8,-43,0)))
+    .add(barrier_forks_m.translate((0,-25,0)))
+    .add(detailed_barrier)
+    .add(barrier_taper_forks_m.translate((0,25,0)))
+    .add(barrier_diag_right_forks_m.translate((0,47,0)))
+    .add(barrier_diag_left_forks_m.translate((0,67,0)))
 )
 
 show_object(scene)
 
 # Print These
-#cq.exporters.export(barrier, 'stl/barrier.stl')
-#cq.exporters.export(barrier_taper, 'stl/barrier_taper.stl')
-#cq.exporters.export(barrier_c, 'stl/barrier_c.stl')
-#cq.exporters.export(barrier_curve_60, 'stl/barrier_curve_60.stl')
-#cq.exporters.export(barrier_diag_right, 'stl/barrier_diag_right.stl')
-#cq.exporters.export(barrier_diag_left, 'stl/barrier_diag_left.stl')
+#cq.exporters.export(barrier_c_m, 'stl/barrier_c.stl')
+#cq.exporters.export(barrier_curve_60_forks_m, 'stl/barrier_curve_60.stl')
+#cq.exporters.export(barrier_forks_m, 'stl/barrier.stl')
+#cq.exporters.export(detailed_barrier, 'stl/barrier_detailed.stl')
+#cq.exporters.export(barrier_taper_forks_m, 'stl/barrier_taper.stl')
+#cq.exporters.export(barrier_diag_right_forks_m, 'stl/barrier_diag_right.stl')
+#cq.exporters.export(barrier_diag_left_forks_m, 'stl/barrier_diag_left.stl')
 
 ## legacy
 ##cq.exporters.export(barrier_curve_45, 'stl/barrier_curve_45.stl')

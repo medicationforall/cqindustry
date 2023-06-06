@@ -19,7 +19,7 @@ class Platform(Base):
 
         self.bar_width = 5
         self.bar_inset = 1.5
-        self.bar_padding =1
+        self.bar_padding = 1
 
         self.render_floor = True
         self.floor_height = 1

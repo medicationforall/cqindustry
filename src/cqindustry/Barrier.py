@@ -1,6 +1,7 @@
 import cadquery as cq
 import math
 from . import Base
+from cadqueryhelper import shape, series
 
 def jersey_shape(
     width = 10,
@@ -178,3 +179,98 @@ def cut_forklift(
         .cut(fork_cut.translate((-1*(length/4),0,0)))
     )
     return result
+
+def cut_magnets(
+    barrier,
+    width = 20,
+    pip_height = 2.1,
+    pip_radius = 1.55,
+    x_plus_cut=True,
+    x_minus_cut=True,
+    y_offset = 0,
+    debug = False
+):
+    pip = (
+        cq.Workplane("XY")
+        .cylinder(pip_height,pip_radius)
+        .rotate((0,1,0),(0,0,0),90)
+    )
+    x_face = barrier.faces(">X").workplane().val().Center()
+
+    cuts = (
+        cq.Workplane("XY")
+        .add(pip.translate((
+            x_face.x-(pip_height/2),
+            -1*((width/2)-pip_radius-2),
+            pip_radius+1.5
+        )))
+        .add(pip.translate((
+            x_face.x-(2/2),
+            ((width/2)-pip_radius-2),
+            pip_radius+1.5
+        )))
+    )
+
+    result  = (
+        cq.Workplane("XY")
+        .add(barrier)
+    )
+
+    if x_plus_cut:
+        if debug:
+            result = result.add(cuts.translate((0,-y_offset,0)))
+        else:
+            result = result.cut(cuts.translate((0,-y_offset,0)))
+
+    if x_minus_cut:
+        if debug:
+            result = result.add(cuts.rotate((0,0,1),(0,0,0),180).translate((0,-y_offset,0)))
+        else:
+            result = result.cut(cuts.rotate((0,0,1),(0,0,0),180).translate((0,-y_offset,0)))
+    return result
+
+def caution_stripe(
+        length = 50,
+        width = 10,
+        height = 10,
+        stripe_padding = .4,
+        bar_width=5,
+        bar_padding = 1,
+        bar_inset = 1.5,
+        z_offset = -.2
+):
+    bar = (
+        shape.rail(
+            width,
+            height,
+            bar_width,
+            bar_width-bar_inset
+        )
+        .rotate((1,0,0),(0,0,0),90)
+        .rotate((0,0,1),(0,0,0),90)
+    )
+
+
+    bar_space = bar_width + bar_padding*2
+    size = math.floor(length/bar_space)
+    bars = series(
+        bar,
+        length_offset=bar_padding*2,
+        size=size
+    )
+
+    stripe = (
+        cq.Workplane("XY")
+        .box(
+            length,
+            width-stripe_padding,
+            height-stripe_padding*4)
+        .union(bars.translate((
+            0,
+            stripe_padding + z_offset,
+            0
+        )))
+        .rotate((1,0,0),(0,0,0),-90)
+    ).translate((0,0,z_offset))
+
+    return stripe

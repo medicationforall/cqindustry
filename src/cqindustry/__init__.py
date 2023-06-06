@@ -9,5 +9,7 @@ from .Barrier import (
     barrier_curved,
     barrier_diagonal,
     taper_barrier,
-    cut_forklift
+    cut_forklift,
+    cut_magnets,
+    caution_stripe
 )
