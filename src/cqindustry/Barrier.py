@@ -183,8 +183,8 @@ def cut_forklift(
 def cut_magnets(
     barrier,
     width = 20,
-    pip_height = 2.1,
-    pip_radius = 1.55,
+    pip_height = 2.4,
+    pip_radius = 1.56,
     x_plus_cut=True,
     x_minus_cut=True,
     y_offset = 0,
