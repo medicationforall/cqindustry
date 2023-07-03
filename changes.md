@@ -1,6 +1,8 @@
 # CQIndustry changelog
 
 ## Main wip
+
+## 0.0.2
 * Upped cadqueryhelper dependency version
 * Upped cqterrain dependency version
 * Walkway added irregular grid support
