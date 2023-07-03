@@ -6,6 +6,7 @@
 * Walkway added irregular grid support
 * Walkway added grid support
 * Added Initial Barrier Design
+* Updated the license
 
 ## 0.0.1
 * Initial release
