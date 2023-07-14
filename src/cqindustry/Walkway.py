@@ -39,7 +39,7 @@ class Walkway(Base):
         self.tab_width_padding = 0
         self.tab_chamfer = 4.5
 
-        self.render_rails = True
+        self.render_rails = True # True, 'left', right, False
         self.rail_height = 15
         self.rail_width = 4
         self.rail_chamfer = 5
@@ -181,11 +181,24 @@ class Walkway(Base):
             else:
                 raise Exception(f"rail_chamfer {self.rail_chamfer} is too big for rail_height {self.rail_height}")
 
-        rails = (
-            cq.Workplane("XY")
-            .union(rail)
-            .union(rail.rotate((0,0,1),(0,0,0),180))
-        )
+        if self.render_rails == True:
+            rails = (
+                cq.Workplane("XY")
+                .union(rail)
+                .union(rail.rotate((0,0,1),(0,0,0),180))
+            )
+        elif self.render_rails == 'left':
+            rails = (
+                cq.Workplane("XY")
+                #.union(rail)
+                .union(rail.rotate((0,0,1),(0,0,0),180))
+            )
+        elif self.render_rails == 'right':
+            rails = (
+                cq.Workplane("XY")
+                .union(rail)
+                #.union(rail.rotate((0,0,1),(0,0,0),180))
+            )
 
         self.rails = rails
 

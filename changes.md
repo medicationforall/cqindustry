@@ -1,6 +1,7 @@
 # CQIndustry changelog
 
 ## Main wip
+* Added support to render only the left or right rail on the walkway.
 
 ## 0.0.2
 * Upped cadqueryhelper dependency version
