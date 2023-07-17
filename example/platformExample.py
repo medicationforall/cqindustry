@@ -1,3 +1,5 @@
+# whatever you do.... DO NOT RENAME this file to platform.py
+# There are machinations at play in which man is not entitled to understand.
 import cadquery as cq
 from cqindustry import Platform
 

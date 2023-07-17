@@ -2,6 +2,10 @@
 
 ## Main wip
 
+## 0.0.4
+* Fix that which lives in the basement, and was causing all of the example files to break.
+  * Circular dependency issue from the 5th ring of hell.
+
 ## 0.0.3
 * Added support to render only the left or right rail on the walkway.
 * Updated Dependencies
