@@ -10,6 +10,8 @@ class Platform(Base):
         self.width = 150
         self.height = 5
         self.corner_chamfer = 10
+
+        self.render_center_cut = True
         self.cut_diameter = 76
 
         self.render_stripes = True
@@ -31,6 +33,7 @@ class Platform(Base):
         self.ladder_length = 25
         self.ladder_cut_chamfer = 2
 
+        # parts
         self.center_cut = None
         self.platform = None
         self.stripe_cuts = None
@@ -194,7 +197,9 @@ class Platform(Base):
     def make(self):
         super().make()
         self.__make_platform()
-        self.__make_center_cut()
+
+        if self.render_center_cut:
+            self.__make_center_cut()
 
         if self.render_floor:
             self.__make_floor_tiles()
@@ -211,8 +216,10 @@ class Platform(Base):
         scene = (
             cq.Workplane("XY")
             .union(self.platform)
-            .cut(self.center_cut)
         )
+
+        if self.render_center_cut and self.center_cut:
+            scene = scene.cut(self.center_cut)
 
         if self.render_floor and self.floor_tiles:
             scene = scene.cut(self.floor_tiles)

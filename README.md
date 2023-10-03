@@ -2,18 +2,44 @@
 python Library for making Industrial terrain.
 
 ![](./documentation/image/03.png)<br /><br />
-![](./documentation/image/05.png)
 
-### Example Usage
+## Platform
+![](./documentation/image/02.png)<br />
 
-``` python
-```
+* [Code](./src/cqindustry/Platform.py)
+* [Example](./example/platformExample.py)
+* [Stl](.stl/platform_alt.stl)
+
+# Ring
+![](./documentation/image/04.png)<br />
+
+* [Code](./src/cqindustry/Ring.py)
+* [Example](./example/ring.py)
+* [Stl](.stl/ring.stl)
+
+
+## Walkway
+![](./documentation/image/05.png)<br />
+
+* [Code](./src/cqindustry/Walkway.py)
+* [Example](./example/walkway.py)
+* [Stl](.stl/walkway.stl)
+
+## Jersey Barriers
+![](./documentation/image/08.png)
+
+* [Code](./src/cqindustry/Barrier.py)
+* [Example](./example/barrier_greebled.py)
+* [Stl](.stl/barrier_detailed.stl)
 
 ## Dependencies
 * [CadQuery 2.1](https://github.com/CadQuery/cadquery)
-* [cqMore](https://github.com/JustinSDK/cqMore)
-* [cadqueryhelper](https://github.com/medicationforall/cadqueryhelper)
 * [cqterrain](https://github.com/medicationforall/cqterrain)
+
+## Projects
+* [Chip Tower](https://miniforall.com/chiptower) 
+* [Walkway Terrain](https://miniforall.com/walkways)
+* [Jersey Barrier Set](https://miniforall.com/jerseybarriers)
 
 
 ### Installation
