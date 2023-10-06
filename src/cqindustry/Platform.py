@@ -42,13 +42,18 @@ class Platform(Base):
         self.ladder_cuts = None
 
     def __make_platform(self):
-        platform = (
-            cq.Workplane("XY")
-            .box(self.length, self.width, self.height)
-            .faces("X or -X")
-            .edges("Z")
-            .chamfer(self.corner_chamfer)
-        )
+
+
+        if self.corner_chamfer:
+            platform = (
+                cq.Workplane("XY")
+                .box(self.length, self.width, self.height)
+                .faces("X or -X")
+                .edges("Z")
+                .chamfer(self.corner_chamfer)
+            )
+        else:
+            platform = cq.Workplane("XY").box(self.length, self.width, self.height)
 
         self.platform = platform
 
@@ -148,18 +153,29 @@ class Platform(Base):
             odd_col_push = [(self.floor_tile_size+self.floor_tile_padding)/2,0]
         )
 
-        outline = (
-            cq.Workplane("XY")
-            .box(
-                self.length-(self.stripe_width+self.floor_pading)*2,
-                self.width-(self.stripe_width+self.floor_pading)*2,
-                self.height/2
+        if self.corner_chamfer:
+            outline = (
+                cq.Workplane("XY")
+                .box(
+                    self.length-(self.stripe_width+self.floor_pading)*2,
+                    self.width-(self.stripe_width+self.floor_pading)*2,
+                    self.height/2
+                )
+                .faces("X or -X")
+                .edges("Z")
+                .chamfer(self.corner_chamfer)
+                .translate((0,0,self.height/2))
             )
-            .faces("X or -X")
-            .edges("Z")
-            .chamfer(self.corner_chamfer)
-            .translate((0,0,self.height/2))
-        )
+        else:
+            outline = (
+                cq.Workplane("XY")
+                .box(
+                    self.length-(self.stripe_width+self.floor_pading)*2,
+                    self.width-(self.stripe_width+self.floor_pading)*2,
+                    self.height/2
+                )
+                .translate((0,0,self.height/2))
+            )
 
         floor_tiles = diamonds.translate((
             0,

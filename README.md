@@ -4,14 +4,14 @@ python Library for making Industrial terrain.
 ![](./documentation/image/03.png)<br /><br />
 
 ## Platform
-![](./documentation/image/02.png)<br />
+![](./documentation/image/platform/02.png)<br />
 
 * [Code](./src/cqindustry/Platform.py)
 * [Example](./example/platformExample.py)
 * [Stl](.stl/platform_alt.stl)
 
 # Ring
-![](./documentation/image/04.png)<br />
+![](./documentation/image/ring/04.png)<br />
 
 * [Code](./src/cqindustry/Ring.py)
 * [Example](./example/ring.py)
@@ -19,14 +19,14 @@ python Library for making Industrial terrain.
 
 
 ## Walkway
-![](./documentation/image/05.png)<br />
+![](./documentation/image/walkway/05.png)<br />
 
 * [Code](./src/cqindustry/Walkway.py)
 * [Example](./example/walkway.py)
 * [Stl](.stl/walkway.stl)
 
 ## Jersey Barriers
-![](./documentation/image/08.png)
+![](./documentation/image/barrier/08.png)
 
 * [Code](./src/cqindustry/Barrier.py)
 * [Example](./example/barrier_greebled.py)

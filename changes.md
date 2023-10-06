@@ -2,6 +2,13 @@
 
 ## Main wip
 
+## 0.0.6
+* Upped cqterrain version to 0.1.8
+* Made platform corner_chamfer optional
+* Updated platform example
+  * Added new platform stl
+* Updated README.md 
+
 ## 0.0.5
 * Made the platform center cut optional
 * Updated README.md
