@@ -188,7 +188,7 @@ def cut_magnets(
     x_plus_cut=True,
     x_minus_cut=True,
     y_offset = 0,
-    z_lift = 1.5
+    z_lift = 1.5,
     debug = False
 ):
     pip = (
