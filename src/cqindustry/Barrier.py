@@ -188,6 +188,7 @@ def cut_magnets(
     x_plus_cut=True,
     x_minus_cut=True,
     y_offset = 0,
+    z_lift = 1.5
     debug = False
 ):
     pip = (
@@ -200,14 +201,14 @@ def cut_magnets(
     cuts = (
         cq.Workplane("XY")
         .add(pip.translate((
-            x_face.x-(pip_height/2),
-            -1*((width/2)-pip_radius-2),
-            pip_radius+1.5
+            x_face.x - (pip_height/2),
+            -1*((width/2) - pip_radius - 2),
+            pip_radius + z_lift
         )))
         .add(pip.translate((
-            x_face.x-(pip_height/2),
-            ((width/2)-pip_radius-2),
-            pip_radius+1.5
+            x_face.x - (pip_height/2),
+            ((width/2) - pip_radius - 2),
+            pip_radius + z_lift
         )))
     )
 

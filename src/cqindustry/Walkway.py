@@ -12,7 +12,7 @@ class Walkway(Base):
 
         self.walkway_chamfer = 3
 
-        self.render_slots=True # grid, irregular
+        self.render_slots = True # grid, irregular
         self.slot_length = 3
         self.slot_width_padding = 2
         self.slot_length_offset = 2
