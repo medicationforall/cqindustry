@@ -2,6 +2,9 @@
 
 ## Main wip
 
+## 0.0.7
+* Fixed barrier magnet placement bug
+
 ## 0.0.6
 * Upped cqterrain version to 0.1.8
 * Made platform corner_chamfer optional

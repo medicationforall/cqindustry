@@ -205,7 +205,7 @@ def cut_magnets(
             pip_radius+1.5
         )))
         .add(pip.translate((
-            x_face.x-(2/2),
+            x_face.x-(pip_height/2),
             ((width/2)-pip_radius-2),
             pip_radius+1.5
         )))
