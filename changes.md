@@ -2,6 +2,9 @@
 
 ## Main wip
 
+## 0.0.8
+* Upped cqterrain version to 0.2.0
+
 ## 0.0.7
 * Fixed barrier magnet placement bug
 * Added z_lift property to barrier cut magnets.
