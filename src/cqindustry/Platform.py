@@ -1,6 +1,5 @@
 import cadquery as cq
-from . import Base
-from cadqueryhelper import shape, series, grid
+from cadqueryhelper import Base, shape, series, grid
 import math
 
 class Platform(Base):
@@ -248,6 +247,6 @@ class Platform(Base):
                 scene = scene.cut(self.stripe_cuts)
 
             if self.caution_stripes:
-                scene.add(self.caution_stripes)
+                scene = scene.union(self.caution_stripes)
 
         return scene

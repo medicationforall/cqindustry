@@ -1,6 +1,5 @@
 import cadquery as cq
 import math
-from . import Base
 from cadqueryhelper import shape, series
 
 def jersey_shape(

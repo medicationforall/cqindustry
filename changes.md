@@ -2,6 +2,18 @@
 
 ## Main wip
 
+## 0.1.0
+* Upped cqterrain version to 0.3.0
+* Removed local Base class and instead resolve Base from cadqueryhelper
+* Ring build unions the ladders.
+* Platform build unions the stripes; also fixed a a syntax bug.
+* Walkway build unions
+  * rails.
+  * irregular grid.
+  * tile grid
+* Added irregular grid walkway example
+* Added tile walkway example
+
 ## 0.0.8
 * Upped cqterrain version to 0.2.0
 

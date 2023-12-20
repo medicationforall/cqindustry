@@ -1,6 +1,5 @@
 import cadquery as cq
-from . import Base
-from cadqueryhelper import shape
+from cadqueryhelper import Base, shape
 from cqterrain import Ladder
 
 class Ring(Base):
@@ -111,6 +110,6 @@ class Ring(Base):
             scene = (
                 scene
                 .cut(self.cut_ladders)
-                .add(self.ladders)
+                .union(self.ladders)
             )
         return scene

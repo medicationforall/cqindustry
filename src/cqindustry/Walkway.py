@@ -1,6 +1,5 @@
 import cadquery as cq
-from . import Base
-from cadqueryhelper import series, grid, irregular_grid, shape
+from cadqueryhelper import Base, series, grid, irregular_grid, shape
 import math
 
 class Walkway(Base):
@@ -286,15 +285,15 @@ class Walkway(Base):
         if self.render_slots and self.slots:
             scene = scene.cut(self.slots)
         elif self.render_slots == 'grid' and self.grid:
-            scene = scene.add(self.grid)
+            scene = scene.union(self.grid)
         elif self.render_slots == 'irregular' and self.irregular_grid:
-            scene = scene.add(self.irregular_grid)
+            scene = scene.union(self.irregular_grid)
 
         if self.render_tabs and self.tabs:
             scene = scene.union(self.tabs)
 
         if self.render_rails and self.rails:
-            scene = scene.add(self.rails)
+            scene = scene.union(self.rails)
 
         if self.render_rail_slots and self.rail_slots:
             scene = scene.cut(self.rail_slots)
