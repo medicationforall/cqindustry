@@ -161,16 +161,16 @@ scene = (
     .add(barrier_diag_left_forks_m.translate((0,67,0)))
 )
 
-show_object(scene)
+#show_object(scene)
 
 # Print These
-#cq.exporters.export(barrier_c_m, 'stl/barrier_c.stl')
-#cq.exporters.export(barrier_curve_60_forks_m, 'stl/barrier_curve_60.stl')
-#cq.exporters.export(barrier_forks_m, 'stl/barrier.stl')
-#cq.exporters.export(detailed_barrier, 'stl/barrier_detailed.stl')
-#cq.exporters.export(barrier_taper_forks_m, 'stl/barrier_taper.stl')
-#cq.exporters.export(barrier_diag_right_forks_m, 'stl/barrier_diag_right.stl')
-#cq.exporters.export(barrier_diag_left_forks_m, 'stl/barrier_diag_left.stl')
+cq.exporters.export(barrier_c_m, 'stl/barrier_c.stl')
+cq.exporters.export(barrier_curve_60_forks_m, 'stl/barrier_curve_60.stl')
+cq.exporters.export(barrier_forks_m, 'stl/barrier.stl')
+cq.exporters.export(detailed_barrier, 'stl/barrier_detailed.stl')
+cq.exporters.export(barrier_taper_forks_m, 'stl/barrier_taper.stl')
+cq.exporters.export(barrier_diag_right_forks_m, 'stl/barrier_diag_right.stl')
+cq.exporters.export(barrier_diag_left_forks_m, 'stl/barrier_diag_left.stl')
 
 ## legacy
 ##cq.exporters.export(barrier_curve_45, 'stl/barrier_curve_45.stl')

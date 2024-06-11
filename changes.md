@@ -2,6 +2,12 @@
 
 ## Main wip
 
+## 0.2.0
+* Upped cqterrain version to 1.0.0
+* Added example_runner.py
+* Fixed barrier_greebled example
+* Fixed walkway tiled example
+
 ## 0.1.1
 * Upped cqterrain version to 0.3.3
 

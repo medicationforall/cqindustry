@@ -10,7 +10,7 @@ def custom_tile(length, width, height):
     height = height,
     padding = 1,
     internal_padding = height + .5,
-    rivet_height = 2.5,
+    rivet_height = 0.5,
     rivet_radius = .5
 )
     return c_tile
