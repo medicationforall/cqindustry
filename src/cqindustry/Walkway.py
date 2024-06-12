@@ -5,52 +5,55 @@ import math
 class Walkway(Base):
     def __init__(self):
         super().__init__()
-        self.length = 75
-        self.width = 50
-        self.height = 5
 
-        self.walkway_chamfer = 3
+        ## parameters
+        self.length:float = 75
+        self.width:float = 50
+        self.height:float = 5
 
-        self.render_slots = True # grid, irregular
-        self.slot_length = 3
-        self.slot_width_padding = 2
-        self.slot_length_offset = 2
-        self.slots_end_margin = 10
+        self.walkway_chamfer:float = 3
+
+        self.render_slots:bool = True # grid, irregular
+        self.slot_length:float = 3
+        self.slot_width_padding:float = 2
+        self.slot_length_offset:float = 2
+        self.slots_end_margin:float = 10
 
         ## regular tiles
-        self.tile_length = 10
-        self.tile_width = 10
-        self.tile_height = 2
-        self.tile_padding = 1
+        self.tile_length:float = 10
+        self.tile_width:float = 10
+        self.tile_height:float = 2
+        self.tile_padding:float = 1
         self.make_tile_method = None
 
         ## irregular tiles
-        self.tile_max_height = self.height
-        self.tile_max_columns = 5
-        self.tile_max_rows = 5
-        self.tile_union_grid = False
-        self.tile_seed = 'test'
-        self.grid_width_padding = 2
+        self.tile_max_height:float = self.height
+        self.tile_max_columns:int = 5
+        self.tile_max_rows:int = 5
+        self.tile_union_grid:bool = False
+        self.tile_seed:str = 'test'
+        self.grid_width_padding:float = 2
 
-        self.render_tabs = True
-        self.tab_length = 5
-        self.tab_height = 1
-        self.tab_width_padding = 0
-        self.tab_chamfer = 4.5
+        self.render_tabs:bool = True
+        self.tab_length:float = 5
+        self.tab_height:float = 1
+        self.tab_width_padding:float = 0
+        self.tab_chamfer:float = 4.5
 
-        self.render_rails = True # True, 'left', right, False
-        self.rail_height = 15
-        self.rail_width = 4
-        self.rail_chamfer = 5
+        self.render_rails:bool|str = True # True, 'left', right, False
+        self.rail_height:float = 15
+        self.rail_width:float = 4
+        self.rail_chamfer:float = 5
 
-        self.render_rail_slots = True
-        self.rail_slot_length = 3
-        self.rail_slot_top_padding = 2
-        self.rail_slot_length_offset = 2
-        self.rail_slots_end_margin = 10
-        self.rail_slot_pointed_inner_height = 5
-        self.rail_slot_type = "box" # box, archpointed, archround
+        self.render_rail_slots:bool = True
+        self.rail_slot_length:float = 3
+        self.rail_slot_top_padding:float = 2
+        self.rail_slot_length_offset:float = 2
+        self.rail_slots_end_margin:float = 10
+        self.rail_slot_pointed_inner_height:float = 5
+        self.rail_slot_type:str = "box" # box, archpointed, archround
 
+        ## shapes
         self.walkway = None
 
         self.slots = None
@@ -82,7 +85,7 @@ class Walkway(Base):
         self.walkway = walkway
 
     def __make_slots(self):
-        slot_width = self.width - (self.slot_width_padding * 2 + self.rail_width * 2)
+        slot_width:float = self.width - (self.slot_width_padding * 2 + self.rail_width * 2)
         slot = (
             cq.Workplane("XY")
             .slot2D(slot_width, self.slot_length)
@@ -91,10 +94,10 @@ class Walkway(Base):
             .rotate((0,0,1),(0,0,0),90)
         )
 
-        size_length = self.length - self.slots_end_margin*2
-        size = math.floor(size_length / (self.slot_length+self.slot_length_offset))
+        size_length:float = self.length - self.slots_end_margin*2
+        size:int = math.floor(size_length / (self.slot_length+self.slot_length_offset))
 
-        slots = series(
+        slots:cq.Workplane = series(
             slot,
             length_offset = self.slot_length_offset,
             size = size
@@ -104,31 +107,32 @@ class Walkway(Base):
 
     def __make_grid(self):
         #self.grid = cq.Workplane("XY").box(20,20,20)
-        tile = self.make_tile_method(
-            self.tile_length - self.tile_padding,
-            self.tile_width - self.tile_padding,
-            self.tile_height
-        )
+        tile=None
 
-        # this may be reverse
+        if self.make_tile_method:
+            tile = self.make_tile_method(
+                self.tile_length - self.tile_padding,
+                self.tile_width - self.tile_padding,
+                self.tile_height
+            )
+
+        # this may be reversed
         rows = math.floor(self.length / self.tile_length)
         columns = math.floor((self.width - (self.grid_width_padding * 2 + self.rail_width * 2)) / self.tile_width)
-        #print(f'columns {columns} rows {rows} length {self.length}, width {self.width}')
-        #print(f'grid_width_padding {self.grid_width_padding*2} rail_width {self.rail_width*2}')
 
+        if tile:
+            tiles = grid.make_grid(
+                part=tile,
+                dim=[self.tile_length, self.tile_width],
+                columns = columns,
+                rows = rows
+            )
 
-        tiles = grid.make_grid(
-            part=tile,
-            dim=[self.tile_length, self.tile_width],
-            columns = columns,
-            rows = rows
-        )
-
-        z_translate = self.height/2 + self.tile_height/2
-        self.grid = tiles.translate((0,0,z_translate))
+            z_translate = self.height/2 + self.tile_height/2
+            self.grid = tiles.translate((0,0,z_translate))
 
     def __make_irregular_grid(self):
-        igrid = irregular_grid(
+        igrid:cq.Workplane = irregular_grid(
             length=self.length,
             width = self.width - (self.rail_width *2) - self.grid_width_padding,
             height = self.tile_height,
@@ -161,9 +165,9 @@ class Walkway(Base):
         self.tabs = tabs
 
     def __make_rails(self):
-        y_translate = -1*(self.width/2-self.rail_width/2)
-        z_translate = self.height/2+self.rail_height/2
-        rail = (
+        y_translate:float = -1*(self.width/2-self.rail_width/2)
+        z_translate:float = self.height/2+self.rail_height/2
+        rail:cq.Workplane = (
             cq.Workplane("XY")
             .box(self.length, self.rail_width, self.rail_height)
             .translate((0,y_translate,z_translate))
@@ -239,10 +243,10 @@ class Walkway(Base):
         else:
             raise Exception(f"Unrecognized rail_slot_type {slot_type}")
 
-        size_length = self.length - self.rail_slots_end_margin*2
+        size_length:float = self.length - self.rail_slots_end_margin*2
         size = math.floor(size_length / (self.rail_slot_length+self.rail_slot_length_offset))
 
-        rail_slots = series(
+        rail_slots:cq.Workplane = series(
             rail_slot,
             length_offset = self.rail_slot_length_offset,
             size = size
@@ -275,7 +279,7 @@ class Walkway(Base):
         if self.render_rail_slots:
             self.__make_rail_slots()
 
-    def build(self):
+    def build(self) -> cq.Workplane:
         super().build()
         scene = (
             cq.Workplane("XY")

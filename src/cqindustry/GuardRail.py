@@ -155,7 +155,7 @@ class GuardRail(Base):
         if self.render_clamps:
             self.__make_clamps()
         
-    def build(self):
+    def build(self) -> cq.Workplane:
         super().build()
         
         scene = (

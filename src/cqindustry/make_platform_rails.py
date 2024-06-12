@@ -6,7 +6,7 @@ def make_platform_rails(
         bp_guard_rail, 
         length_spacing, 
         width_spacing
-    ):
+    ) -> tuple[cq.Workplane, cq.Workplane, cq.Workplane]:
     # guard rail length ways
     bp_guard_rail.length = bp_platform.length - bp_platform.corner_chamfer*2
     bp_guard_rail.clamp_spacing = length_spacing

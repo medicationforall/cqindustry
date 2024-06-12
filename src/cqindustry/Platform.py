@@ -5,32 +5,32 @@ import math
 class Platform(Base):
     def __init__(self):
         super().__init__()
-        self.length = 150
-        self.width = 150
-        self.height = 5
-        self.corner_chamfer = 10
+        self.length:float = 150
+        self.width:float = 150
+        self.height:float = 5
+        self.corner_chamfer:float = 10
 
-        self.render_center_cut = True
-        self.cut_diameter = 76
+        self.render_center_cut:bool = True
+        self.cut_diameter:float = 76
 
-        self.render_stripes = True
-        self.stripe_width = 5
-        self.stripe_side_padding = 3
-        self.stripe_padding = .3
+        self.render_stripes:bool = True
+        self.stripe_width:float = 5
+        self.stripe_side_padding:float = 3
+        self.stripe_padding:float = .3
 
-        self.bar_width = 5
-        self.bar_inset = 1.5
-        self.bar_padding = 1
+        self.bar_width:float = 5
+        self.bar_inset:float = 1.5
+        self.bar_padding:float = 1
 
-        self.render_floor = True
-        self.floor_height = 1
-        self.floor_tile_size = 12
-        self.floor_tile_padding = 2
-        self.floor_pading =2
+        self.render_floor:bool = True
+        self.floor_height:float = 1
+        self.floor_tile_size:float = 12
+        self.floor_tile_padding:float = 2
+        self.floor_pading:float = 2
 
-        self.render_ladders = True
-        self.ladder_length = 25
-        self.ladder_cut_chamfer = 2
+        self.render_ladders:bool = True
+        self.ladder_length:float = 25
+        self.ladder_cut_chamfer:float = 2
 
         # parts
         self.center_cut = None
@@ -41,7 +41,6 @@ class Platform(Base):
         self.ladder_cuts = None
 
     def __make_platform(self):
-
 
         if self.corner_chamfer:
             platform = (
@@ -65,14 +64,14 @@ class Platform(Base):
         self.center_cut = center_cut
 
     def __make_stripe_cuts(self):
-        stripe_y_length = self.length - self.corner_chamfer*2 - self.stripe_side_padding*2
+        stripe_y_length:float = self.length - self.corner_chamfer*2 - self.stripe_side_padding*2
         stripe_cut_y = (
             cq.Workplane("XY")
             .box(stripe_y_length, self.stripe_width, self.height)
             .translate((0,self.width/2-self.stripe_width/2,0))
         )
 
-        stripe_x_length = self.width - self.corner_chamfer*2 - self.stripe_side_padding*2
+        stripe_x_length:float = self.width - self.corner_chamfer*2 - self.stripe_side_padding*2
         stripe_cut_x = (
             cq.Workplane("XY")
             .box(self.stripe_width, stripe_x_length, self.height)
@@ -91,10 +90,10 @@ class Platform(Base):
 
 
     def __caution_stripes(self):
-        stripe_y_length = self.length - self.corner_chamfer*2 - self.stripe_side_padding*2
-        stripe_x_length = self.width - self.corner_chamfer*2 - self.stripe_side_padding*2
+        stripe_y_length:float = self.length - self.corner_chamfer*2 - self.stripe_side_padding*2
+        stripe_x_length:float = self.width - self.corner_chamfer*2 - self.stripe_side_padding*2
 
-        stripe_width = self.stripe_width - self.stripe_padding*2
+        stripe_width:float = self.stripe_width - self.stripe_padding*2
 
         bar = (
             shape.rail(self.stripe_width, self.height, self.bar_width, self.bar_width-self.bar_inset)
@@ -103,11 +102,11 @@ class Platform(Base):
         )
 
         bar_space = self.bar_width+self.bar_padding*2
-        size_y = math.floor(stripe_y_length/bar_space)
-        size_x = math.floor(stripe_x_length/bar_space)
+        size_y:float = math.floor(stripe_y_length/bar_space)
+        size_x:float = math.floor(stripe_x_length/bar_space)
 
-        bars_y = series(bar, length_offset=self.bar_padding*2, size=size_y)
-        bars_x = series(bar, length_offset=self.bar_padding*2, size=size_x)
+        bars_y:cq.Workplane = series(bar, length_offset=self.bar_padding*2, size=size_y)
+        bars_x:cq.Workplane = series(bar, length_offset=self.bar_padding*2, size=size_x)
 
         stripe_y = (
             cq.Workplane("XY")
@@ -134,17 +133,17 @@ class Platform(Base):
         self.caution_stripes = stripes
 
     def __make_floor_tiles(self):
-        diamond = shape.diamond(
+        diamond:cq.Workplane = shape.diamond(
             self.floor_tile_size,
             self.floor_tile_size,
             self.floor_height
         ).faces("-Z").chamfer(.4)
 
 
-        rows = math.floor((self.length-self.height) / (self.floor_tile_size+self.floor_tile_padding))
-        colums = math.floor((self.width-self.height) / ((self.floor_tile_size+self.floor_tile_padding)/2))
+        rows:int = math.floor((self.length-self.height) / (self.floor_tile_size+self.floor_tile_padding))
+        colums:int = math.floor((self.width-self.height) / ((self.floor_tile_size+self.floor_tile_padding)/2))
 
-        diamonds = grid.make_grid(
+        diamonds:cq.Workplane = grid.make_grid(
             diamond,
             [self.floor_tile_size+self.floor_tile_padding, (self.floor_tile_size+self.floor_tile_padding)/2],
             rows = rows+2,
@@ -176,7 +175,7 @@ class Platform(Base):
                 .translate((0,0,self.height/2))
             )
 
-        floor_tiles = diamonds.translate((
+        floor_tiles:cq.Workplane = diamonds.translate((
             0,
             0,
             self.floor_height/2+self.height/2
@@ -226,7 +225,7 @@ class Platform(Base):
             self.__make_stripe_cuts()
             self.__caution_stripes()
 
-    def build(self):
+    def build(self) -> cq.Workplane:
         super().build()
         scene = (
             cq.Workplane("XY")
@@ -239,7 +238,7 @@ class Platform(Base):
         if self.render_floor and self.floor_tiles:
             scene = scene.cut(self.floor_tiles)
 
-        if self.render_ladders:
+        if self.render_ladders and self.ladder_cuts:
             scene = scene.cut(self.ladder_cuts)
 
         if self.render_stripes:

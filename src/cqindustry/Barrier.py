@@ -3,12 +3,12 @@ import math
 from cadqueryhelper import shape, series
 
 def jersey_shape(
-    width = 10,
-    height = 10,
-    base_height = 2,
-    middle_width_inset = -2,
-    middle_height = 2,
-    top_width_inset = -1
+    width:float = 10,
+    height:float = 10,
+    base_height:float = 2,
+    middle_width_inset:float = -2,
+    middle_height:float = 2,
+    top_width_inset:float = -1
 ):
     mid_height = base_height + middle_height
     top_width = middle_width_inset + top_width_inset
