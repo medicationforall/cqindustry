@@ -7,6 +7,7 @@
 * Added example_runner.py
 * Fixed barrier_greebled example
 * Fixed walkway tiled example
+* Added GuardRail, with examples
 
 ## 0.1.1
 * Upped cqterrain version to 0.3.3

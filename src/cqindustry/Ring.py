@@ -5,22 +5,25 @@ from cqterrain import Ladder
 class Ring(Base):
     def __init__(self):
         super().__init__()
-        self.cut_diameter = 76
-        self.diameter = self.cut_diameter + 10
-        self.inset = 5
-        self.height = 10
 
-        self.render_ladders = True
-        self.ladder_height = 71
-        self.ladder_length = 25
-        self.ladder_width = 10
-        self.ladder_cut_padding = 1.5
-        self.ladder_cut_chamfer = 2
+        # parameters
+        self.cut_diameter:float = 76
+        self.diameter:float = self.cut_diameter + 10
+        self.inset:float = 5
+        self.height:float = 10
 
-        self.ring = None
-        self.cut_ladders = None
-        self.ladders = None
-        self.cut_ring = None
+        self.render_ladders:bool = True
+        self.ladder_height:float = 71
+        self.ladder_length:float = 25
+        self.ladder_width:float = 10
+        self.ladder_cut_padding:float = 1.5
+        self.ladder_cut_chamfer:float = 2
+
+        # shapes
+        self.ring:cq.Workplane|None = None
+        self.cut_ladders:cq.Workplane|None = None
+        self.ladders:cq.Workplane|None  = None
+        self.cut_ring:cq.Workplane|None  = None
 
     def __make_ring(self):
         ring = shape.cone(
@@ -71,15 +74,19 @@ class Ring(Base):
         bp.width = self.ladder_width
         bp.height = self.ladder_height
         bp.make()
-        bp.rungs = bp.rungs.translate((0,self.ladder_width/4,0))
+
+        if bp.rungs:
+            bp.rungs = bp.rungs.translate((0,self.ladder_width/4,0))
 
         ladder = bp.build()
-
         ladder = ladder.translate((
             0,
             self.cut_diameter/2+.6,
             self.ladder_height/2
-        )).cut(self.cut_ring)
+        ))
+
+        if self.cut_ring:
+            ladder = ladder.cut(self.cut_ring)
 
         ladders = (
             cq.Workplane()
@@ -87,26 +94,24 @@ class Ring(Base):
             .union(ladder.rotate((0,0,1),(0,0,0),180))
         )
 
-        #show_object(ladders)
-
         self.ladders = ladders
 
-    def make(self):
-        super().make()
+    def make(self, parent=None):
+        super().make(parent)
         self.__make_ring()
 
         if self.render_ladders:
             self.__make_cut_ladders()
             self.__make_ladder()
 
-    def build(self):
+    def build(self) -> cq.Workplane:
         super().build()
         scene = (
             cq.Workplane("XY")
             .union(self.ring)
         )
 
-        if self.render_ladders and self.ladders:
+        if self.render_ladders and self.ladders and self.cut_ladders:
             scene = (
                 scene
                 .cut(self.cut_ladders)
