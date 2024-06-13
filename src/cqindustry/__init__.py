@@ -15,3 +15,5 @@ from .Barrier import (
 )
 from .GuardRail import GuardRail
 from .make_platform_rails import make_platform_rails
+
+from .ChipTower import ChipTower

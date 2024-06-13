@@ -12,6 +12,7 @@ import example.platformExample
 import example.ring
 import example.guard_rail
 import example.guard_rail_platform
+import example.chip_tower_set
 
 print('Walkway examples')
 import example.walkway

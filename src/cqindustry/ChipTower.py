@@ -1,5 +1,3 @@
-# going to make an orchestrator class
-
 import cadquery as cq
 from cadqueryhelper import Base
 from cqindustry import ChipCan, Ring, Platform, GuardRail
@@ -9,19 +7,19 @@ class ChipTower(Base):
         super().__init__()
 
         #parameters
-        self.length = 150
-        self.width = 150
-        self.height = 225
+        self.length:float = 150
+        self.width:float = 150
+        self.height:float = 225
 
-        self.stories = 2
-        self.story_height = 75
-        self.can_diameter_padding = 1
+        self.stories:int = 2
+        self.story_height:float = 75
+        self.can_diameter_padding:float = 1
 
-        self.render_can = True
-        self.render_story_proxy = True
-        self.render_platforms = True
-        self.render_rings = True
-        self.render_rail = True
+        self.render_can:bool = True
+        self.render_story_proxy:bool = True
+        self.render_platforms:bool = True
+        self.render_rings:bool = True
+        self.render_rail:bool = True
 
         #blueprints
         self.bp_can = ChipCan()
@@ -31,10 +29,10 @@ class ChipTower(Base):
 
         # shapes
         self.story_proxy = None
-        self.__rings = None
-        self.__rails = None
 
     def _make_can(self):
+        # I could also set the height of the can to minimally meet the calculated height of the total stories
+        # that may be a bad idea because the can's are not a 3d printed component and are instead externally sourced. 
         self.bp_can.height = self.height
         self.bp_can.make()
 
@@ -53,12 +51,18 @@ class ChipTower(Base):
         self.bp_platform.cut_diameter = self.bp_can.diameter + self.can_diameter_padding
         self.bp_platform.make()
 
+    def _make_ring(self):
+        self.bp_ring.cut_diameter = self.bp_can.diameter + self.can_diameter_padding
+        self.bp_ring.ladder_height = self.story_height - self.bp_platform.height 
+        self.bp_ring.make()
+
     def make(self, parent = None):
         super().make(parent)
 
         self._make_can()
         self.__make_story_proxy()
-        self.bp_ring.make()
+        self._make_ring()
+        
         self._make_platform()
         self.bp_rail.make()
 
@@ -83,26 +87,50 @@ class ChipTower(Base):
             )))
 
         return platforms.translate((0,0,self.story_height - self.bp_platform.height))
+    
+    def __build_rings(self, ring:cq.Workplane):
+        # worked way easier than I thought
+        rings = cq.Workplane("XY")
+ 
+        for i in range(self.stories):
+            rings = rings.union(ring.translate((0,0,(i*self.story_height))))
+
+        return (
+            rings
+            .translate((0,0,self.story_height-self.bp_platform.height))
+            .rotate((0,0,1),(0,0,0),45)
+        )
 
     def build(self) -> cq.Workplane:
         super().build()
 
-        can = self.bp_can.build()
-        ring = self.bp_ring.build()
+        # I need to implement this yet, but that's for another time
         rail = self.bp_rail.build()
 
         scene = cq.Workplane("XY")
 
-        if self.render_can and can:
-            scene = scene.union(can)
+        if self.render_can:
+            can = self.bp_can.build()
+            scene = scene.union(can.translate((0,0,self.bp_can.height/2)))
 
         if self.render_story_proxy and self.story_proxy:
             stories = self.__build_story_proxies()
             scene = scene.add(stories)
+
+        if self.render_rings:
+            ring = self.bp_ring.build().rotate((1,0,0),(0,0,0),180)
+            rings = self.__build_rings(ring)
+            scene = scene.union(rings)
 
         if self.render_platforms:
             platform = self.bp_platform.build()
             platforms = self.__build_platforms(platform)
             scene = scene.union(platforms)
 
-        return scene
+        z_translate = -(self.height/2)
+        
+        if self.stories * self.story_height > self.height:
+            z_translate = -((self.stories * self.story_height)/2)
+            
+        return scene.translate((0,0,z_translate))
+    

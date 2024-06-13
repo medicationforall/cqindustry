@@ -9,6 +9,7 @@
 * Fixed walkway tiled example
 * Added GuardRail, with examples
 * Added ChipCan
+* Added ChipTower and example
 
 ## 0.1.1
 * Upped cqterrain version to 0.3.3
