@@ -6,6 +6,7 @@ import example.barrier_greebled
 import example.barrier_magnet_template
 
 print("Chip Tower Examples")
+import example.chip_can
 import example.combine
 import example.platformExample
 import example.ring
