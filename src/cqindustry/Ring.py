@@ -96,7 +96,7 @@ class Ring(Base):
 
         self.ladders = ladders
 
-    def make(self, parent=None):
+    def make(self, parent = None):
         super().make(parent)
         self.__make_ring()
 

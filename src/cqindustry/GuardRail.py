@@ -144,7 +144,7 @@ class GuardRail(Base):
         
         self.clamps = clamps
         
-    def make(self, parent=None):
+    def make(self, parent = None):
         super().make(parent)
         rail = self.__make_rail_frame()
         self.guard_rail = rail

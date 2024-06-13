@@ -7,15 +7,16 @@ class ChipCan(Base):
         
         # parameters
         self.height:float = 75 * 3
-        self.radius:float = 75 / 2
+        self.diameter:float = 75
         
         #shape
         self.can_cylinder:cq.Workplane|None = None
         
     def _make_can(self):
+        radius = self.diameter / 2
         can = (
             cq.Workplane("XY")
-            .cylinder(self.height, self.radius)
+            .cylinder(self.height, radius)
         )
         
         self.can_cylinder = can

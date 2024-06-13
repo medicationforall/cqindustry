@@ -208,8 +208,8 @@ class Platform(Base):
         )
         self.ladder_cuts = ladder_cuts
 
-    def make(self):
-        super().make()
+    def make(self, parent = None):
+        super().make(parent)
         self.__make_platform()
 
         if self.render_center_cut:
