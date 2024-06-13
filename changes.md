@@ -8,6 +8,7 @@
 * Fixed barrier_greebled example
 * Fixed walkway tiled example
 * Added GuardRail, with examples
+* Added ChipCan
 
 ## 0.1.1
 * Upped cqterrain version to 0.3.3
