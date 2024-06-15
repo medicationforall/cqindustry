@@ -286,6 +286,66 @@ ring = bp_ring.build()
 * [example](../example/ring.py)
 * [stl](../stl/ring.stl)
 
+## Ring Conduit
+Extends Ring class
+
+### parameters
+
+### Inherited from Ring
+* cut_diameter: float
+* diameter: float
+* inset: float
+* height: float
+* render_ladders: bool
+* ladder_height: float
+* ladder_length: float
+* ladder_width: float
+* ladder_cut_padding: float
+* ladder_cut_chamfer: float
+
+### Tile Conduit parameters
+* frame: float
+* frame_depth: float
+* pipe_count: int|None
+* pipe_radius: float
+* pipe_inner_radius: float
+* segment_length: float
+* space: float = 4
+* pipe_padding: float
+
+``` python
+import cadquery as cq
+from cqindustry import RingConduit
+
+bp_ring = RingConduit()
+bp_ring.cut_diameter = 76
+bp_ring.diameter = bp_ring.cut_diameter + 10
+bp_ring.inset = 5
+bp_ring.height = 10
+bp_ring.render_ladders = True
+bp_ring.ladder_height = 71
+bp_ring.ladder_length = 25
+bp_ring.ladder_width = 10
+
+bp_ring.frame = 1
+bp_ring.frame_depth = 3
+bp_ring.pipe_count = None
+bp_ring.pipe_radius = 4
+bp_ring.pipe_inner_radius = 2
+bp_ring.segment_length = 6
+bp_ring.space = 4
+bp_ring.pipe_padding = 1
+
+bp_ring.make()
+ring = bp_ring.build()
+```
+
+![](image/ring/03.png)
+
+* [source](../src/cqindustry/RingConduit.py)
+* [example](../example/ring_conduit.py)
+* [stl](../stl/ring_conduit.stl)
+
 ## Walkway
 
 ### parameters

@@ -1,6 +1,7 @@
 from .ChipCan import ChipCan
 from .Platform import Platform
 from .Ring import Ring
+from .RingConduit import RingConduit
 from .Walkway import Walkway
 from .Barrier import (
     jersey_shape,

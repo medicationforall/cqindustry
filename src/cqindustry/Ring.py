@@ -82,7 +82,7 @@ class Ring(Base):
         )
         self.cut_ladders = cut_ladders
 
-    def __make_ladder(self):
+    def _make_ladder(self):
         bp = Ladder()
         bp.length = self.ladder_length
         bp.width = self.ladder_width
@@ -116,7 +116,7 @@ class Ring(Base):
 
         if self.render_ladders:
             self.__make_cut_ladders()
-            self.__make_ladder()
+            self._make_ladder()
 
     def build(self) -> cq.Workplane:
         super().build()

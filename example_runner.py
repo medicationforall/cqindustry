@@ -10,6 +10,7 @@ import example.chip_can
 import example.combine
 import example.platformExample
 import example.ring
+import example.ring_conduit
 import example.guard_rail
 import example.guard_rail_platform
 import example.chip_tower_set
