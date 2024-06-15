@@ -212,14 +212,14 @@ class Platform(Base):
         super().make(parent)
         self.__make_platform()
 
-        if self.render_center_cut:
-            self.__make_center_cut()
+        #if self.render_center_cut:
+        self.__make_center_cut()
 
         if self.render_floor:
             self.__make_floor_tiles()
 
-        if self.render_ladders:
-            self.__make_ladder_cuts()
+        #if self.render_ladders:
+        self.__make_ladder_cuts()
 
         if self.render_stripes:
             self.__make_stripe_cuts()
