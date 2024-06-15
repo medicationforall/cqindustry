@@ -1,5 +1,12 @@
 # cqindustry Documentation
 
+## Jersey Barriers
+![](image/barrier/08.png)
+
+* [Code](../src/cqindustry/Barrier.py)
+* [Example](../example/barrier_greebled.py)
+* [Stl](..stl/barrier_detailed.stl)
+
 ## ChipCan
 ### parameters
 * height: float

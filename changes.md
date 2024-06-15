@@ -15,6 +15,7 @@
   * On make the ladder cut and center cut are still made
   * the cut components are just not applied on build if the flags are turned off
 * Documentation
+* Updated README.md
 
 ## 0.1.1
 * Upped cqterrain version to 0.3.3

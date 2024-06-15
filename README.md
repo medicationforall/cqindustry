@@ -1,36 +1,15 @@
 # cqindustry
-python Library for making Industrial terrain.
+Python library for making 3d printable Industrial terrain using cadquery.
 
 ![](./documentation/image/03.png)<br /><br />
 
-## Platform
-![](./documentation/image/platform/02.png)<br />
+---
 
-* [Code](./src/cqindustry/Platform.py)
-* [Example](./example/platformExample.py)
-* [Stl](.stl/platform_alt.stl)
+## Project Documention
+* [Documentation](documentation/documentation.md) 
 
-# Ring
-![](./documentation/image/ring/04.png)<br />
-
-* [Code](./src/cqindustry/Ring.py)
-* [Example](./example/ring.py)
-* [Stl](.stl/ring.stl)
-
-
-## Walkway
-![](./documentation/image/walkway/05.png)<br />
-
-* [Code](./src/cqindustry/Walkway.py)
-* [Example](./example/walkway.py)
-* [Stl](.stl/walkway.stl)
-
-## Jersey Barriers
-![](./documentation/image/barrier/08.png)
-
-* [Code](./src/cqindustry/Barrier.py)
-* [Example](./example/barrier_greebled.py)
-* [Stl](.stl/barrier_detailed.stl)
+## Changes
+* [Changelog](./changes.md)
 
 ## Dependencies
 * [CadQuery 2.x](https://github.com/CadQuery/cadquery)
@@ -41,6 +20,7 @@ python Library for making Industrial terrain.
 * [Walkway Terrain](https://miniforall.com/walkways)
 * [Jersey Barrier Set](https://miniforall.com/jerseybarriers)
 
+---
 
 ### Installation
 To install cqindustry directly from GitHub, run the following `pip` command:
@@ -53,3 +33,21 @@ To install cqindustry directly from GitHub, run the following `pip` command:
 From the cloned cqindustry directory run.
 
 	pip install ./
+
+---
+
+## Running Example Scripts
+[example_runner.py](example_runner.py) runs all examples.
+
+``` bash
+C:\Users\<user>\home\3d\cqindustry>python example_runner.py
+```
+
+**OR**
+
+### Running individual examples
+* From the root of the project run one of the example scripts:
+  
+``` bash
+C:\Users\<user>\home\3d\cqindustry>python ./example/ring.py
+```
