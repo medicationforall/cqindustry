@@ -10,6 +10,9 @@
 * Added GuardRail, with examples
 * Added ChipCan
 * Added ChipTower and example
+* Platform changed how some of the render flags work. 
+  * On make the ladder cut and center cut are still made
+  * the cut components are just not applied on build if the flags are turned off 
 
 ## 0.1.1
 * Upped cqterrain version to 0.3.3
