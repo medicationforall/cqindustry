@@ -33,7 +33,7 @@ python Library for making Industrial terrain.
 * [Stl](.stl/barrier_detailed.stl)
 
 ## Dependencies
-* [CadQuery 2.1](https://github.com/CadQuery/cadquery)
+* [CadQuery 2.x](https://github.com/CadQuery/cadquery)
 * [cqterrain](https://github.com/medicationforall/cqterrain)
 
 ## Projects

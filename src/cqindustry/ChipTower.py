@@ -1,3 +1,17 @@
+# Copyright 2024 James Adams
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import cadquery as cq
 from cadqueryhelper import Base
 from cqindustry import ChipCan, Ring, Platform, GuardRail
@@ -16,7 +30,7 @@ class ChipTower(Base):
         self.can_diameter_padding:float = 1
 
         self.render_can:bool = True
-        self.render_story_proxy:bool = True
+        self.render_story_proxy:bool = False
         self.render_platforms:bool = True
         self.render_rings:bool = True
         self.render_rail:bool = True

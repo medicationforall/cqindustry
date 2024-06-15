@@ -1,7 +1,6 @@
 import cadquery as cq
 from cqindustry import ChipCan
 
-
 bp_can = ChipCan()
 bp_can.height = 75 * 3
 bp_can.diameter = 75

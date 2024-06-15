@@ -2,17 +2,19 @@
 
 ## Main wip
 
-## 0.2.0
+## 1.0.0
 * Upped cqterrain version to 1.0.0
+  * Fixed barrier_greebled example
+  * Fixed walkway tiled example
 * Added example_runner.py
-* Fixed barrier_greebled example
-* Fixed walkway tiled example
+* Added License blocks
 * Added GuardRail, with examples
 * Added ChipCan
 * Added ChipTower and example
 * Platform changed how some of the render flags work. 
   * On make the ladder cut and center cut are still made
-  * the cut components are just not applied on build if the flags are turned off 
+  * the cut components are just not applied on build if the flags are turned off
+* Documentation
 
 ## 0.1.1
 * Upped cqterrain version to 0.3.3

@@ -10,7 +10,7 @@ bp.walkway_chamfer = 3
 
 bp.render_slots = True
 bp.slot_length = 3
-bp.slot_padding = 5
+bp.slot_width_padding = 5
 bp.slot_length_offset = 5
 bp.slot_width_padding = 4
 bp.slots_end_margin = 0
