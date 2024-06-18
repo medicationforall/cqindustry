@@ -14,6 +14,8 @@ import example.ring_conduit
 import example.guard_rail
 import example.guard_rail_platform
 import example.chip_tower_set
+import example.chip_tower_set_2
+import example.chiptower_readme_example
 
 print('Walkway examples')
 import example.walkway

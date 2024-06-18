@@ -5,7 +5,7 @@ bp_tower = ChipTower()
 
 bp_tower.bp_ring=(Ring(), RingConduit(), Ring(), Ring()) #type:ignore
 #bp_tower.width = 230
-bp_tower.render_rings=False
+bp_tower.render_rings=True
 bp_tower.stories = 4
 bp_tower.story_height = 50
 bp_tower.render_story_proxy = False
