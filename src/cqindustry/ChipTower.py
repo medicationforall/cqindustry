@@ -30,7 +30,7 @@ class ChipTower(Base):
         self.can_diameter_padding:float = 1
 
         self.render_can:bool = True
-        self.ring_alternate_rotate = False
+        self.ring_alternate_rotate:bool = False
         self.render_story_proxy:bool = False
         self.render_platforms:bool = True
         self.render_rings:bool = True

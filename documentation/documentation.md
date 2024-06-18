@@ -40,6 +40,7 @@ can_ex = bp_can.build()
 * story_height: float
 * can_diameter_padding: float
 * render_can: bool
+* ring_alternate_rotate: bool - if set to true every other ring will be rotated 90 degrees.
 * render_story_proxy: bool
 * render_platforms: bool
 * render_rings: bool
@@ -47,7 +48,7 @@ can_ex = bp_can.build()
 
 ### blueprints
 * bp_can: Base = ChipCan()
-* bp_ring: Base = Ring()
+* bp_ring: Base = Ring()| Tuple - Can be a single blueprint instance or a tuple of blueprints that wil alternate between floors.
 * bp_platform: Base = Platform()
 * bp_rail: Base = GuardRail()
 
