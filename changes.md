@@ -11,6 +11,7 @@
 * Added GuardRail, with examples
 * Added ChipCan
 * Added ChipTower and example
+* Added RingConduit
 * Platform changed how some of the render flags work. 
   * On make the ladder cut and center cut are still made
   * the cut components are just not applied on build if the flags are turned off

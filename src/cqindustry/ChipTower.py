@@ -30,6 +30,7 @@ class ChipTower(Base):
         self.can_diameter_padding:float = 1
 
         self.render_can:bool = True
+        self.ring_alternate_rotate = False
         self.render_story_proxy:bool = False
         self.render_platforms:bool = True
         self.render_rings:bool = True
@@ -66,9 +67,15 @@ class ChipTower(Base):
         self.bp_platform.make()
 
     def _make_ring(self):
-        self.bp_ring.cut_diameter = self.bp_can.diameter + self.can_diameter_padding
-        self.bp_ring.ladder_height = self.story_height - self.bp_platform.height 
-        self.bp_ring.make()
+        if type(self.bp_ring) is tuple: # multiple blueprints
+            for blueprint in self.bp_ring: #type:ignore
+                blueprint.cut_diameter = self.bp_can.diameter + self.can_diameter_padding
+                blueprint.ladder_height = self.story_height - self.bp_platform.height
+                blueprint.make()
+        else: # single blueprint
+            self.bp_ring.cut_diameter = self.bp_can.diameter + self.can_diameter_padding
+            self.bp_ring.ladder_height = self.story_height - self.bp_platform.height 
+            self.bp_ring.make()
 
     def make(self, parent = None):
         super().make(parent)
@@ -102,25 +109,41 @@ class ChipTower(Base):
 
         return platforms.translate((0,0,self.story_height - self.bp_platform.height))
     
-    def __build_rings(self, ring:cq.Workplane):
+    def __build_rings(self):
+        built_rings = []
+
+        if type(self.bp_ring) is tuple: # multiple blueprints
+            for blueprint in self.bp_ring: #type: ignore
+                built_rings.append(blueprint.build)
+        else:
+            built_rings.append(self.bp_ring.build)
+
         # worked way easier than I thought
         rings = cq.Workplane("XY")
  
         for i in range(self.stories):
-            rings = rings.union(ring.translate((0,0,(i*self.story_height))))
+            index = i % len(built_rings)
+            ring = built_rings[index]().rotate((1,0,0),(0,0,0),180)
+            
+            if self.ring_alternate_rotate and i % 2 == 1:
+                ring = ring.rotate((0,0,1),(0,0,0), 90)
 
-        return (
+            rings = rings.union(ring.translate((0,0,(i*self.story_height))))
+            if i >2:
+                break
+            
+        rings = (
             rings
             .translate((0,0,self.story_height-self.bp_platform.height))
             .rotate((0,0,1),(0,0,0),45)
         )
 
+        return rings
+
     def build(self) -> cq.Workplane:
         super().build()
-
         # I need to implement this yet, but that's for another time
         rail = self.bp_rail.build()
-
         scene = cq.Workplane("XY")
 
         if self.render_can:
@@ -130,16 +153,15 @@ class ChipTower(Base):
         if self.render_story_proxy and self.story_proxy:
             stories = self.__build_story_proxies()
             scene = scene.add(stories)
-
-        if self.render_rings:
-            ring = self.bp_ring.build().rotate((1,0,0),(0,0,0),180)
-            rings = self.__build_rings(ring)
-            scene = scene.union(rings)
-
+            
         if self.render_platforms:
             platform = self.bp_platform.build()
             platforms = self.__build_platforms(platform)
             scene = scene.union(platforms)
+            
+        if self.render_rings:
+            rings = self.__build_rings()
+            scene = scene.union(rings)
 
         z_translate = -(self.height/2)
         
