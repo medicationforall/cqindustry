@@ -3,6 +3,7 @@
 ## Main wip
 
 ## 1.0.0
+* Type Annotations
 * Upped cqterrain version to 1.0.0
   * Fixed barrier_greebled example
   * Fixed walkway tiled example
