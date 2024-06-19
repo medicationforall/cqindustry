@@ -2,6 +2,9 @@
 
 ## Main wip
 
+## 1.0.1
+* Upped cqterrain version to 1.0.1
+
 ## 1.0.0
 * Type Annotations
 * Upped cqterrain version to 1.0.0
