@@ -2,6 +2,9 @@
 
 ## Main wip
 
+## 1.0.2
+* Upped cqterrain version to 1.0.2
+
 ## 1.0.1
 * Upped cqterrain version to 1.0.1
 
