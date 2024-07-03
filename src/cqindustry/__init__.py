@@ -14,7 +14,10 @@ from .Barrier import (
     cut_magnets,
     caution_stripe
 )
+
 from .GuardRail import GuardRail
 from .make_platform_rails import make_platform_rails
+from .CanPlatform import CanPlatform
 
 from .ChipTower import ChipTower
+from .CanTower import CanTower

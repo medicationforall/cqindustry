@@ -2,6 +2,10 @@
 
 ## Main wip
 
+## 1.1.0
+* Added soda can tower variant
+  * Added CanTower
+
 ## 1.0.3
 * Upped cqterrain version to 1.0.3
 
