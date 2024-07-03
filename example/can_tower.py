@@ -3,6 +3,12 @@ from cqindustry import CanTower
 
 bp_can_tower = CanTower()
 bp_can_tower.render_can = False
+bp_can_tower.can_height = 122
+bp_can_tower.can_diameter = 66
+bp_can_tower.cut_padding = .5
+bp_can_tower.ring_width = 4.5
+bp_can_tower.platform_height = 20
+bp_can_tower.platform_ladder_extends = 10
 bp_can_tower.make()
 can_tower = bp_can_tower.build()
 

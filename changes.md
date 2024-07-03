@@ -4,7 +4,11 @@
 
 ## 1.1.0
 * Added soda can tower variant
-  * Added CanTower
+  * Added CanTower (orchestrator class)
+  * Added CanPlatform
+  * Added can_tower example
+  * Added can_platform example
+  * Added can_tower_set example
 
 ## 1.0.3
 * Upped cqterrain version to 1.0.3
