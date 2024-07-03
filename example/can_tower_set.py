@@ -14,6 +14,7 @@ bp_can_tower.platform_height = 20
 bp_can_tower.platform_ladder_extends = 15
 bp_can_tower.make()
 soda_can_tower = bp_can_tower.build()
+soda_can_tower_plate = bp_can_tower.build_plate()
 
 #-------------------
 # red bull can
@@ -29,13 +30,16 @@ bp_can_tower_2.bp_platform.tile_method = tile.slot_diagonal
 
 bp_can_tower_2.make()
 red_bull_can_tower = bp_can_tower_2.build()
+red_bull_can_tower_plate = bp_can_tower_2.build_plate()
 
 
 #-------------------
 scene =(
         cq.Workplane("XY")
         .add(soda_can_tower)
-        .add(red_bull_can_tower.translate((0,80,0)))
+        .add(soda_can_tower_plate.translate((0,90,0)))
+        .add(red_bull_can_tower.translate((80,0,0)))
+        .add(red_bull_can_tower_plate.translate((80,90,0)))
 )
 
 #show_object(scene)

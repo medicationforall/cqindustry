@@ -1,7 +1,7 @@
 import cadquery as cq
 from cadqueryhelper import Base
 from cqspoolterrain.pipe import straight
-from . import Ring, ChipCan, CanPlatform
+from . import Ring, ChipCan, CanPlatform, CanRail
 
 class CanTower(Base):
     def __init__(self):
@@ -25,6 +25,7 @@ class CanTower(Base):
         self.bp_chip_cut = ChipCan()
         
         self.bp_platform = CanPlatform()
+        self.bp_rail = CanRail()
         
         #shapes
         self.pipe:cq.Workplane|None = None
@@ -52,6 +53,8 @@ class CanTower(Base):
         self.bp_platform.ladder_height = self.platform_height + self.platform_ladder_extends
         self.bp_platform.make()
         
+        self.bp_rail.make(self.bp_platform)
+        
         self.pipe = straight(render_hollow=False, render_through_hole = False)
         
     def build(self):
@@ -59,16 +62,35 @@ class CanTower(Base):
         soda_can = self.bp_can.build()
         soda_can_cut = self.bp_chip_cut.build()
         platform = self.bp_platform.build()
+        rail = self.bp_rail.build()
 
         scene = (
             cq.Workplane("XY")
             .union(self.pipe)
             .cut(soda_can_cut.translate((0,0,self.bp_can.height /2)))
             .union(ring)
-            #.union(self.bp_ring.cut_ladders)
             .add(platform.translate((0,0,self.bp_can.height))) 
+            .add(rail.translate((0,0,self.bp_can.height)))
         )
 
         if self.render_can:
             scene.add(soda_can.translate((0,0,self.bp_can.height /2)))
+        return scene
+    
+    def build_plate(self):
+        ring = self.bp_ring.build()
+        soda_can = self.bp_can.build()
+        soda_can_cut = self.bp_chip_cut.build()
+        platform = self.bp_platform.build()
+        rail = self.bp_rail.build()
+
+        scene = (
+            cq.Workplane("XY")
+            .union(self.pipe)
+            .cut(soda_can_cut.translate((0,0,self.bp_can.height /2)))
+            .union(ring)
+            .add(platform.translate((0,self.can_diameter+self.ring_width+10,self.bp_platform.height/2))) 
+            .add(rail.rotate((0,1,0),(0,0,0),180).translate((0,(self.can_diameter+self.ring_width+10)*2,self.bp_rail.height+(self.bp_platform.height/2))))
+        )
+
         return scene

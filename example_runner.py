@@ -19,6 +19,7 @@ import example.chiptower_readme_example
 
 print('Can Tower Examples')
 import example.can_platform
+import example.can_rail
 import example.can_tower
 import example.can_tower_set
 

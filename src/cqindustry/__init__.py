@@ -18,6 +18,7 @@ from .Barrier import (
 from .GuardRail import GuardRail
 from .make_platform_rails import make_platform_rails
 from .CanPlatform import CanPlatform
+from .CanRail import CanRail
 
 from .ChipTower import ChipTower
 from .CanTower import CanTower
