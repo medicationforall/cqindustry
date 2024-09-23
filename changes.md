@@ -2,6 +2,19 @@
 
 ## Main wip
 
+## 2.0.0
+* Moved code, examples, and documentation around to new packages
+  * barrier
+  * chip
+  * can
+  * walkway
+* Added annotations to Barrier
+  
+
+## 1.1.1
+* Upped cqterrain version to 1.1.1
+* Added intial bridge module
+
 ## 1.1.0
 * Added soda can tower variant
   * Added CanTower (orchestrator class)
@@ -11,7 +24,6 @@
   * Added can_platform example
   * Added can_rail example
   * Added can_tower_set example
- 
 
 ## 1.0.3
 * Upped cqterrain version to 1.0.3

@@ -26,7 +26,11 @@ show_object(tower_ex)
 ---
 
 ## Project Documention
-* [Documentation](documentation/documentation.md) 
+* [Documentation](documentation/documentation.md)
+	* [Barrier](documentation/barrier.md)
+	* [Can](documentation/can.md)
+	* [chip](documentation/chip.md)
+	* [walkway](documentation/walkway.md)
 
 ## Changes
 * [Changelog](./changes.md)
