@@ -18,15 +18,15 @@ class CanTower(Base):
         self.platform_ladder_extends:float = 10
         
         #blueprints
-        self.bp_ring = Ring()
+        self.bp_ring:Ring = Ring()
         self.bp_ring.height = 10
         self.bp_ring.ladder_width = 5
         
-        self.bp_can = ChipCan()
-        self.bp_chip_cut = ChipCan()
+        self.bp_can:ChipCan = ChipCan()
+        self.bp_chip_cut:ChipCan = ChipCan()
         
-        self.bp_platform = CanPlatform()
-        self.bp_rail = CanRail()
+        self.bp_platform:CanPlatform = CanPlatform()
+        self.bp_rail:CanRail = CanRail()
         
         #shapes
         self.pipe:cq.Workplane|None = None

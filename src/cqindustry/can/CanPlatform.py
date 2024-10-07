@@ -17,14 +17,14 @@ class CanPlatform(Base):
         self.tile_height:float = 3
         self.tile_method:Callable[[float,float,float],cq.Workplane] = tile.bolt_panel
 
-        self.ladder_length = 25
+        self.ladder_length:float = 25
         self.ladder_width:float = 5
         self.ladder_height:float = 30
         self.ladder_cut_padding:float = 1
         self.ladder_cut_chamfer:float = 2
 
         #blueprints
-        self.bp_ladder = Ladder()
+        self.bp_ladder:Ladder = Ladder()
 
         #shapes
         self.platform:cq.Workplane|None = None

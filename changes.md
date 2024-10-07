@@ -9,6 +9,7 @@
   * can
   * walkway
 * Added annotations to Barrier
+* Documented can package
   
 
 ## 1.1.1

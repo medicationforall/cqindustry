@@ -14,3 +14,6 @@ can_tower = bp_can_tower.build()
 
 #show_object(can_tower.translate((0,0,0)))
 cq.exporters.export(can_tower, 'stl/can_tower.stl')
+
+can_tower_plate = bp_can_tower.build_plate()
+cq.exporters.export(can_tower_plate, 'stl/can_tower_plate.stl')

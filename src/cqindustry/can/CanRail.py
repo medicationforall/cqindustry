@@ -7,20 +7,20 @@ class CanRail(Base):
         super().__init__()
         #parameters
         self.parent:CanPlatform|None = None
-        self.height = 20
-        self.rail_width = 3
-        self.rail_height = 2
+        self.height:float = 20
+        self.rail_width:float = 3
+        self.rail_height:float = 2
         
-        self.support_count = 6
-        self.support_length = 2.5
-        self.support_width = 2
-        self.support_height = 25
+        self.support_count:int = 6
+        self.support_length:float = 2.5
+        self.support_width:float = 2
+        self.support_height:float = 25
         
         #shapes
-        self.rail = None
-        self.support = None
-        self.supports = None
-        self.cut_rail = None
+        self.rail:cq.Workplane|None = None
+        self.support:cq.Workplane|None = None
+        self.supports:cq.Workplane|None = None
+        self.cut_rail:cq.Workplane|None = None
         
     def __make_rail(self):
         if self.parent:
