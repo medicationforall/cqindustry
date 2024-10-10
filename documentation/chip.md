@@ -163,7 +163,7 @@ Helper function to make guard rails around a platform
 
 ``` python
 import cadquery as cq
-from cqindustry import GuardRail, Platform, make_platform_rails
+from cqindustry.chip import GuardRail, Platform, make_platform_rails
 
 bp_platform = Platform()
 bp_platform.length = 150
@@ -239,7 +239,8 @@ show_object(scene)
 * floor_tile_padding: float
 * floor_pading: float
 * render_ladders: bool
-* ladder_length: float 
+* ladder_length: float
+* ladder_width: float | None
 * ladder_cut_chamfer: float
 
 ``` python

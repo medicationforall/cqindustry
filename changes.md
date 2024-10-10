@@ -10,6 +10,7 @@
   * walkway
 * Added annotations to Barrier
 * Documented can package
+* chip Platform added ladder_width property
   
 
 ## 1.1.1

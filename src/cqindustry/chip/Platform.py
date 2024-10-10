@@ -44,6 +44,7 @@ class Platform(Base):
 
         self.render_ladders:bool = True
         self.ladder_length:float = 25
+        self.ladder_width:float|None = None
         self.ladder_cut_chamfer:float = 2
 
         # parts
@@ -198,11 +199,16 @@ class Platform(Base):
         self.floor_tiles = outline.intersect(floor_tiles).translate((0,0,-1))
 
     def __make_ladder_cuts(self):
+        ladder_width = self.ladder_length
+
+        if self.ladder_width:
+            ladder_width = self.ladder_width
+
         ladder_cut = (
             cq.Workplane("XY")
             .box(
                 self.ladder_length,
-                self.ladder_length,
+                ladder_width,
                 self.height
             )
             .faces("X or -X")
@@ -210,7 +216,7 @@ class Platform(Base):
             .chamfer(self.ladder_cut_chamfer)
             .translate((
                 0,
-                self.cut_diameter/2+self.ladder_length/2-4,
+                self.cut_diameter/2+ladder_width/2-4,
                 0
             ))
         )
