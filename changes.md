@@ -2,6 +2,9 @@
 
 ## Main wip
 
+## 2.0.1
+* Upped cqterrain version to 2.0.2
+
 ## 2.0.0
 * Moved code, examples, and documentation around to new packages
   * barrier
