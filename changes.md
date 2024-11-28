@@ -2,10 +2,6 @@
 
 ## Main wip
 
-## 3.0.0
-* moved Barrier code into cqterrain
-* moved walkway code into cqterrain
-
 ## 2.0.0
 * Moved code, examples, and documentation around to new packages
   * barrier
@@ -15,8 +11,9 @@
 * Added annotations to Barrier
 * Documented can package
 * chip Platform added ladder_width property
+* moved Barrier code into cqterrain
+* moved walkway code into cqterrain
   
-
 ## 1.1.1
 * Upped cqterrain version to 1.1.1
 * Added intial bridge module
