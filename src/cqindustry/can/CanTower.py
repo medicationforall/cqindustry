@@ -1,6 +1,6 @@
 import cadquery as cq
 from cadqueryhelper import Base
-from cqspoolterrain.pipe import straight
+from cqterrain.pipe import straight
 from ..chip import ChipCan, Ring
 from . import CanPlatform, CanRail
 

@@ -27,10 +27,8 @@ show_object(tower_ex)
 
 ## Project Documention
 * [Documentation](documentation/documentation.md)
-	* [Barrier](documentation/barrier.md)
 	* [Can](documentation/can.md)
 	* [chip](documentation/chip.md)
-	* [walkway](documentation/walkway.md)
 
 ## Changes
 * [Changelog](./changes.md)
@@ -41,8 +39,6 @@ show_object(tower_ex)
 
 ## Projects
 * [Chip Tower](https://miniforall.com/chiptower) 
-* [Walkway Terrain](https://miniforall.com/walkways)
-* [Jersey Barrier Set](https://miniforall.com/jerseybarriers)
 
 ---
 

@@ -1,10 +1,4 @@
 
-print('Barrier Examples')
-import example.barrier.barrier
-import example.barrier.barrier_alt
-import example.barrier.barrier_greebled
-import example.barrier.barrier_magnet_template
-
 print('Bridge Examples')
 import example.bridge.straight
 
@@ -25,8 +19,3 @@ import example.can.can_platform
 import example.can.can_rail
 import example.can.can_tower
 import example.can.can_tower_set
-
-print('Walkway Examples')
-import example.walkway.walkway
-import example.walkway.walkway_irregular
-import example.walkway.walkway_tile

@@ -2,6 +2,10 @@
 
 ## Main wip
 
+## 3.0.0
+* moved Barrier code into cqterrain
+* moved walkway code into cqterrain
+
 ## 2.0.0
 * Moved code, examples, and documentation around to new packages
   * barrier
