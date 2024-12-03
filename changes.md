@@ -2,6 +2,10 @@
 
 ## Main wip
 
+## 2.1.0
+* Moved dome code over into cqindustry
+* Fix README.md example path
+
 ## 2.0.1
 * Upped cqterrain version to 2.0.2
 

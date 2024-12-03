@@ -19,3 +19,22 @@ import example.can.can_platform
 import example.can.can_rail
 import example.can.can_tower
 import example.can.can_tower_set
+
+print('come cut keys')
+import example.dome.cut_key_hexagon
+import example.dome.cut_key_pentagon
+
+print('dome parts')
+import example.dome.door_hexagon
+import example.dome.stairs
+import example.dome.vent_hexagon
+import example.dome.make_angled_steps
+import example.dome.make_hexagon
+import example.dome.make_pentagon
+import example.dome.window_frame
+
+print('dome')
+import example.dome.dome
+import example.dome.dome_v2
+import example.dome.dome_v3_numbered
+import example.dome.dome_v3
