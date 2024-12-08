@@ -38,3 +38,21 @@ import example.dome.dome
 import example.dome.dome_v2
 import example.dome.dome_v3_numbered
 import example.dome.dome_v3
+
+print('power')
+import example.power.controlPlatform
+import example.power.controlPlatformAlt
+import example.power.controlPlatformPrint
+import example.power.cradle_tall
+import example.power.cradle
+import example.power.powerstationGreebled
+import example.power.powerStationGreebledUniquePanels
+import example.power.powerStationGreebledUniquePanelsAssembly
+import example.power.powerStationPlain
+import example.power.powerStationPowerLineMulti
+import example.power.powerStations_sidebyside
+import example.power.spoolCladding
+import example.power.spoolCladdingGreebled
+import example.power.spoolCladdingGreebledUnique
+import example.power.stairLift
+import example.power.steelFrame

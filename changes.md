@@ -2,6 +2,11 @@
 
 ## Main wip
 
+## 2.2.0
+* Upped cqterrain version to 2.1.0
+  * This includes spool code
+* Moved power station code over into cqindustry
+
 ## 2.1.0
 * Moved dome code over into cqindustry
 * Fix README.md example path

@@ -3,9 +3,9 @@ Python library for making 3d printable Industrial terrain using cadquery.
 
 ---
 
-[![](./documentation/image/cantower/05.png)](documentation/can.md)<br /><br />
-
 ## Can Tower
+
+[![](./documentation/image/cantower/05.png)](documentation/can.md)<br /><br />
 
 ``` python
 import cadquery as cq
@@ -115,11 +115,34 @@ show_object(dome)
 
 ---
 
+## Power Station
+
+[![](./documentation/image/power/cover.png)](documentation/power.md)<br /><br />
+
+``` python
+import cadquery as cq
+from cqspoolterrain import PowerStation, SpoolCladdingGreebled
+
+bp_power = PowerStation()
+bp_power.bp_cladding = SpoolCladdingGreebled()
+bp_power.bp_cladding.seed="morePower!"
+bp_power.make()
+power = bp_power.build()
+#show_object(power)
+cq.exporters.export(power,f"stl/powerStation_seed_{bp_power.bp_cladding.seed}.stl")
+```
+
+* [Example](./example/power/powerstationGreebled.py)
+* [stl](stl/powerStation_seed_morePower!.stl)
+
+---
+
 ## Project Documention
 * [Documentation](documentation/documentation.md)
 	* [Can](documentation/can.md)
 	* [Chip](documentation/chip.md)
 	* [Dome](documentation/dome.md)
+	* [Power](documentation/power.md)
 
 
 ## Changes
@@ -133,6 +156,7 @@ show_object(dome)
 ## 3d Printed Projects
 * [Chip Tower](https://miniforall.com/chiptower)
 * [Dome Terrain](https://miniforall.com/dometerrain)
+* [Power Station](https://miniforall.com/powerstation)
 
 ---
 
