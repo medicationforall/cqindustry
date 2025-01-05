@@ -56,13 +56,35 @@ show_object(tower_ex)
 
 ---
 
+## Container
+
+[![](./documentation/image/container/35.png)](documentation/container.md)<br /><br />
+
+``` python
+import cadquery as cq
+from cqindustry.container import Container
+
+bp_container = Container()
+bp_container.bp_hinge.rotate_deg = -90
+
+bp_container.make()
+
+result = bp_container.build()
+show_object(result)
+```
+
+* [Example](./example/container/container.py)
+* [stl](./stl/container.stl)
+
+---
+
 ## Dome
 
 [![](./documentation/image/dome/cover.png)](documentation/dome.md)<br /><br />
 
 ``` python
 import cadquery as cq
-from cqdome import Dome, greeble
+from cqindustry.dome import Dome, greeble
 
 #init greebles
 vent_bp = greeble.VentHexagon()
@@ -115,6 +137,33 @@ show_object(dome)
 
 ---
 
+## Portal
+[![](./documentation/image/portal/cover.png)](documentation/portal.md)<br /><br />
+
+``` python
+import cadquery as cq
+from cqindustry.portal import Portal
+
+bp_portal = Portal()
+bp_portal.bp_frame.length = 150
+bp_portal.bp_frame.width = 30
+bp_portal.bp_frame.height = 150
+
+bp_portal.render_base = False
+bp_portal.render_hinges = True
+bp_portal.bp_ramp.width = 10
+bp_portal.make()
+
+
+result_open = bp_portal.build()
+show_object(result_open)
+```
+
+* [Example](./example/portal/portal.py)
+* [stl](stl/portal_open.stl)
+
+---
+
 ## Power Station
 
 [![](./documentation/image/power/cover.png)](documentation/power.md)<br /><br />
@@ -137,11 +186,14 @@ cq.exporters.export(power,f"stl/powerStation_seed_{bp_power.bp_cladding.seed}.st
 
 ---
 
+
 ## Project Documention
 * [Documentation](documentation/documentation.md)
 	* [Can](documentation/can.md)
 	* [Chip](documentation/chip.md)
+    * [Container](documentation/container.md)
 	* [Dome](documentation/dome.md)
+    * [Portal](documentation/portal.md)
 	* [Power](documentation/power.md)
 
 
@@ -156,7 +208,9 @@ cq.exporters.export(power,f"stl/powerStation_seed_{bp_power.bp_cladding.seed}.st
 ## 3d Printed Projects
 * [Chip Tower](https://miniforall.com/chiptower)
 * [Dome Terrain](https://miniforall.com/dometerrain)
+* [Portal](https://miniforall.com/portal)
 * [Power Station](https://miniforall.com/powerstation)
+* [Shipping Container Terrain](https://miniforall.com/shippingcontainer)
 
 ---
 
@@ -189,3 +243,7 @@ C:\Users\<user>\home\3d\cqindustry>python example_runner.py
 ``` bash
 C:\Users\<user>\home\3d\cqindustry>python ./example/ring.py
 ```
+
+---
+
+

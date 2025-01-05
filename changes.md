@@ -2,6 +2,12 @@
 
 ## Main wip
 
+## 2.3.0
+* Upped cqterrain version to 2.5.0
+* Moved cqportal portal code over into cqindustry
+* Moved cqportal container code over into cqindustry
+* Updated README.md
+
 ## 2.2.0
 * Upped cqterrain version to 2.1.0
   * This includes spool code
