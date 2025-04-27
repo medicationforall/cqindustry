@@ -122,7 +122,7 @@ class ContainerLadder(Base):
                     xCount = 1, 
                     yCount= self.ladder_rungs, 
                     center = True)
-                .eachpoint(callback = add_segment)
+                .eachpoint(add_segment)
                 
             ).rotate((1,0,0),(0,0,0),-90).translate((0,0,-1*(self.parent.side_inset/4)))
                 

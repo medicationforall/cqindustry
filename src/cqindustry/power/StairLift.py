@@ -95,7 +95,7 @@ class StairLift(Base):
                 xCount = x_count, 
                 yCount= y_count, 
                 center = True)
-            .eachpoint(callback = add_tile)
+            .eachpoint(add_tile)
         )
         
         outline = cq.Workplane("XY").box(

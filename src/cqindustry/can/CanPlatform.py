@@ -51,7 +51,7 @@ class CanPlatform(Base):
                 xCount = x_count, 
                 yCount= y_count, 
                 center = True)
-            .eachpoint(callback = add_tile)
+            .eachpoint(add_tile)
         )
 
     def __make_cut_ladders(self):

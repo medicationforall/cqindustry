@@ -64,7 +64,7 @@ class SpoolCladding(Base):
                 fill = True,
                 rotate = self.rotate_solid
             )
-            .eachpoint(callback = self._make_clad)
+            .eachpoint(self._make_clad)
         )
         
         self.cladding = cladding_arc

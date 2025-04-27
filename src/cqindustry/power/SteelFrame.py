@@ -106,7 +106,7 @@ class SteelFrame(Base):
                 xCount = x_count+1, 
                 yCount= y_count+1, 
                 center = True)
-            .eachpoint(callback = add_z_beam)
+            .eachpoint(add_z_beam)
         )
         self.z_grid = result
         
@@ -125,7 +125,7 @@ class SteelFrame(Base):
                 xCount = x_count+1, 
                 yCount= y_count, 
                 center = True)
-            .eachpoint(callback = add_y_beam)
+            .eachpoint(add_y_beam)
         ).translate((0,0,self.height/2))
         self.y_grid = result
         
@@ -144,7 +144,7 @@ class SteelFrame(Base):
                 xCount = x_count+1, 
                 yCount= y_count, 
                 center = True)
-            .eachpoint(callback = add_y_corners)
+            .eachpoint(add_y_corners)
         )
         self.corner_grid = result
         
@@ -167,7 +167,7 @@ class SteelFrame(Base):
                 xCount = x_count, 
                 yCount= y_count, 
                 center = True)
-            .eachpoint(callback = add_cube)
+            .eachpoint(add_cube)
         )
         self.cube_grid = result
         

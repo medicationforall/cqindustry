@@ -307,7 +307,7 @@ power = bp_power.build_assembly()
 
 show_object(power)
 
-power.save("gltf/power_assembly.gltf")
+power.export("gltf/power_assembly.gltf")
 ```
 
 ![](./image/power/powerstation/40.png)

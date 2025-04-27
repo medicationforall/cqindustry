@@ -56,7 +56,7 @@ class CanRail(Base):
                     fill = True,
                     rotate = True
                 )
-                .eachpoint(callback = add_support)
+                .eachpoint(add_support)
             )
             self.supports = supports 
         

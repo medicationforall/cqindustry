@@ -1,5 +1,5 @@
 import cadquery as cq
-from cqdome import Dome
+from cqindustry.dome import Dome
 from cqindustry.dome import greeble
 
 bp_dome = Dome()

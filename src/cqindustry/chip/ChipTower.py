@@ -67,24 +67,35 @@ class ChipTower(Base):
         self.bp_platform.make()
 
     def _make_ring(self):
+        #print('make rings')
         if type(self.bp_ring) is tuple: # multiple blueprints
+            #print("dealing ith multiple blueprints")
             for blueprint in self.bp_ring: #type:ignore
+                #print('calling make for rung blueprint')
                 blueprint.cut_diameter = self.bp_can.diameter + self.can_diameter_padding
                 blueprint.ladder_height = self.story_height - self.bp_platform.height
                 blueprint.make()
+            #print('exited multiple blueprints loop')
         else: # single blueprint
+            #print("dealing with single blueprint")
             self.bp_ring.cut_diameter = self.bp_can.diameter + self.can_diameter_padding
             self.bp_ring.ladder_height = self.story_height - self.bp_platform.height 
             self.bp_ring.make()
+            #print("exited single blueprints")
+
 
     def make(self, parent = None):
         super().make(parent)
 
         self._make_can()
         self.__make_story_proxy()
+        #print("_make_ring")
         self._make_ring()
         
+        #print("_make_platform")
         self._make_platform()
+
+        #print("bp_rail.make")
         self.bp_rail.make()
 
     def __build_story_proxies(self):
@@ -113,17 +124,23 @@ class ChipTower(Base):
         built_rings = []
 
         if type(self.bp_ring) is tuple: # multiple blueprints
+            #print("multiple ring blueprints")
             for blueprint in self.bp_ring: #type: ignore
+                #print("append ring blueprints")
                 built_rings.append(blueprint.build)
         else:
+            #print("sibgle ring blueprints")
             built_rings.append(self.bp_ring.build)
 
         # worked way easier than I thought
         rings = cq.Workplane("XY")
  
         for i in range(self.stories):
+            #print('build ring template')
             index = i % len(built_rings)
+            #print(f'invoke ring {index}')
             ring = built_rings[index]().rotate((1,0,0),(0,0,0),180)
+            #print(f'invokeed ring {index}')
             
             if self.ring_alternate_rotate and i % 2 == 1:
                 ring = ring.rotate((0,0,1),(0,0,0), 90)
@@ -131,12 +148,16 @@ class ChipTower(Base):
             rings = rings.union(ring.translate((0,0,(i*self.story_height))))
             if i >2:
                 break
+
+        #print('rings have been made')
             
         rings = (
             rings
             .translate((0,0,self.story_height-self.bp_platform.height))
             .rotate((0,0,1),(0,0,0),45)
         )
+
+        #print('rings have been placed')
 
         return rings
 
@@ -146,25 +167,35 @@ class ChipTower(Base):
         rail = self.bp_rail.build()
         scene = cq.Workplane("XY")
 
+        #print("I made it bo build")
+
+        #print("render_can")
         if self.render_can:
             can = self.bp_can.build()
             scene = scene.union(can.translate((0,0,self.bp_can.height/2)))
 
+        print("render_story_proxy")
         if self.render_story_proxy and self.story_proxy:
             stories = self.__build_story_proxies()
             scene = scene.add(stories)
-            
+
+        #print("render_platforms")    
         if self.render_platforms:
             platform = self.bp_platform.build()
             platforms = self.__build_platforms(platform)
             scene = scene.union(platforms)
             
+        #print("render_rings")      
         if self.render_rings:
             rings = self.__build_rings()
-            scene = scene.union(rings)
+            #print("union rings") 
+            # this is a mean little bug.. this should be a union but in cadquery 25.2 it breaks with ring types.
+            # The union operation works when run in the debugger but not from the command line proper, implies a race / threading issue that's eating an error.
+            scene = scene.add(rings)
 
         z_translate = -(self.height/2)
         
+        #print("stories") 
         if self.stories * self.story_height > self.height:
             z_translate = -((self.stories * self.story_height)/2)
             

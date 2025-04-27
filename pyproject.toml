@@ -4,14 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cqindustry"
-version = "2.3.0"
+version = "2.4.0"
 authors = [
   { name="James Adams", email="inklink28@gmail.com" }
 ]
 description = "Python Library for building Industrial terrain"
 readme = "README.md"
 license = { file="LICENSE" }
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: Apache Software License",
@@ -19,7 +19,7 @@ classifiers = [
 ]
 
 dependencies = [
-'cqterrain @ git+https://github.com/medicationforall/cqterrain@2.5.0',
+'cqterrain @ git+https://github.com/medicationforall/cqterrain@3.4.1',
 ]
 
 

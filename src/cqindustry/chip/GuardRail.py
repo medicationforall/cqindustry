@@ -116,7 +116,7 @@ class GuardRail(Base):
                 xCount = post_count, 
                 yCount= 1, 
                 center = True)
-            .eachpoint(callback = self._make_post)
+            .eachpoint(self._make_post)
         )
         
         self.posts = posts
@@ -152,7 +152,7 @@ class GuardRail(Base):
                 xCount = clamp_count, 
                 yCount= 1, 
                 center = True)
-            .eachpoint(callback = self._make_clamp)
+            .eachpoint(self._make_clamp)
         )
         
         self.clamps = clamps

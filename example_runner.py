@@ -9,15 +9,25 @@ import example.can.can_tower
 import example.can.can_tower_set
 
 print("Chip Tower Examples")
+print("example.chip.chip_can")
 import example.chip.chip_can
+print("example.chip.combine")
 import example.chip.combine
+print("example.chip.platformExample")
 import example.chip.platformExample
+print("example.chip.ring")
 import example.chip.ring
+print("example.chip.ring_conduit")
 import example.chip.ring_conduit
+print("example.chip.guard_rail")
 import example.chip.guard_rail
+print("example.chip.guard_rail_platform")
 import example.chip.guard_rail_platform
+print("example.chip.chip_tower_set")
 import example.chip.chip_tower_set
-import example.chip.chip_tower_set_2
+print("example.chip.chip_tower_set_2")
+#import example.chip.chip_tower_set_2
+print("example.chip.chiptower_readme_example")
 import example.chip.chiptower_readme_example
 
 print('container examples')

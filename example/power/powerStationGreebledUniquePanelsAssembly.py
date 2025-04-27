@@ -22,4 +22,4 @@ power = bp_power.build_assembly()
 
 #show_object(power)
 
-power.save("gltf/power_power_assembly.gltf")
+power.export("gltf/power_power_assembly.gltf")

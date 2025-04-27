@@ -3,6 +3,7 @@ from cqindustry.chip import ChipTower, Ring, RingConduit
 
 bp_tower = ChipTower()
 
+#bp_tower.bp_ring=(Ring(), RingConduit(), Ring(), Ring()) #type:ignore
 bp_tower.bp_ring=(Ring(), RingConduit(), Ring(), Ring()) #type:ignore
 #bp_tower.width = 230
 bp_tower.render_rings=True

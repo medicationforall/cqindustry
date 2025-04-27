@@ -26,7 +26,7 @@ Inherits from Base.
 
 ``` python
 import cadquery as cq
-from cqdome import Dome, greeble
+from cqindustry.dome import Dome, greeble
 
 bp_0 = greeble.CutKeyPentagon()
 bp_0.text='0'
@@ -361,7 +361,7 @@ Inherits from Base.
 
 ``` python
 import cadquery as cq
-from cqdome import Dome
+from cqindustry.dome import Dome
 from cqdome import greeble
 
 bp_dome = Dome()

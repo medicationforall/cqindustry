@@ -116,7 +116,7 @@ class RampGreebled(Ramp):
                 xCount = 2, 
                 yCount= y_count, 
                 center = True)
-            .eachpoint(callback = self._add_segment())
+            .eachpoint(self._add_segment())
             
         ).rotate((1,0,0),(0,0,0),-90).translate((0,0,-1*(self.side_inset/4)))
         self.inside_segments = result

@@ -2,6 +2,16 @@
 
 ## Main wip
 
+## 2.4.0
+* Upped cqterrain version to 3.4.1
+* Cleaned up instances where I was setting the callback parameter for workplane.eachpoint invocations.
+  * https://github.com/CadQuery/cadquery/issues/1395
+* Documentatd a bug in chiptower when using the conduit ring type.
+  * This is a regression issue from going to the new version of cadquery.
+* Changed from using assembly.save (deprecated) to assembly.export
+* Fixed dome imports for examples  
+
+
 ## 2.3.0
 * Upped cqterrain version to 2.5.0
 * Moved cqportal portal code over into cqindustry
