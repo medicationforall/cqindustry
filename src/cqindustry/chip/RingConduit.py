@@ -30,7 +30,7 @@ class RingConduit(Ring):
         
     def _make_ladder(self):
 
-        print("make ring conduit ladder")
+        #print("make ring conduit ladder")
         
         ladder = tile.conduit(
             length = self.ladder_height,
@@ -68,5 +68,5 @@ class RingConduit(Ring):
         super().make()
         
     def build(self):
-        print("build ring conduit ladder")
+        #print("build ring conduit ladder")
         return super().build()
