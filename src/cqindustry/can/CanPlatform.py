@@ -12,6 +12,8 @@ class CanPlatform(Base):
         self.diameter:float = 75
         self.cut_diameter:float = 66.5
         self.cut_height:float = 10
+
+        self.render_floor:bool = True
         self.tile_length:float = 15
         self.tile_width:float = 15
         self.tile_height:float = 3
@@ -30,6 +32,7 @@ class CanPlatform(Base):
         self.platform:cq.Workplane|None = None
         self.cut_cylinder:cq.Workplane|None = None
         self.tile_intersect:cq.Workplane|None = None
+        self.tile:cq.Workplane|None = None
         self.tiles:cq.Workplane|None = None
         self.cut_ladders:cq.Workplane|None = None
         
@@ -87,11 +90,17 @@ class CanPlatform(Base):
     
     def make(self, parent=None):
         super().make(parent)
-        self.platform = cq.Workplane("XY").cylinder(self.height - self.tile_height, self.diameter/2) 
+        if self.render_floor:
+            self.platform = cq.Workplane("XY").cylinder(self.height - self.tile_height, self.diameter/2)
+        else:
+            self.platform = cq.Workplane("XY").cylinder(self.height, self.diameter/2)
+
         self.tile_intersect = cq.Workplane("XY").cylinder(self.tile_height, self.diameter/2)
         self.cut_cylinder = cq.Workplane("XY").cylinder(self.cut_height, self.cut_diameter/2)
-        self._make_tile()
-        self._make_tiles()
+
+        if self.render_floor:
+            self._make_tile()
+            self._make_tiles()
         self.__make_cut_ladders()
         self._make_ladder()
 
@@ -115,7 +124,7 @@ class CanPlatform(Base):
     
     def __validate_build(self):
             missing = ""
-            if not self.tiles:
+            if self.render_floor == True and not self.tiles:
                 missing='tiles'
             elif not self.tile_intersect:
                 missing='tile intersect'
@@ -137,9 +146,23 @@ class CanPlatform(Base):
         if self.__validate_build():
             scene = (
                 cq.Workplane("XY")
-                .union(self.tiles.translate((0,0,self.height/2-self.tile_height/2))) # type: ignore
-                .intersect(self.tile_intersect.translate((0,0,self.height/2-self.tile_height/2))) # type: ignore
-                .add(self.platform.translate((0,0,-self.tile_height/2))) # type: ignore
+            )
+
+            if self.render_floor and self.tiles and self.tile_intersect:
+                scene = (
+                    scene
+                    .union(self.tiles.translate((0,0,self.height/2-self.tile_height/2)))
+                    .intersect(self.tile_intersect.translate((0,0,self.height/2-self.tile_height/2)))
+                )
+
+            platform_z_translate = 0
+
+            if self.render_floor:
+                platform_z_translate = -self.tile_height/2
+                
+            scene = (
+                scene
+                .add(self.platform.translate((0,0,platform_z_translate))) # type: ignore
                 .cut(self.cut_ladders) # type: ignore
                 .cut(self.cut_cylinder.translate((0,0,-1*(self.height/2)+(self.cut_height/2)))) # type: ignore
                 .union(ladders)

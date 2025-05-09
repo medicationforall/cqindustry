@@ -9,6 +9,8 @@ bp_can_tower.cut_padding = .5
 bp_can_tower.ring_width = 4.5
 bp_can_tower.platform_height = 20
 bp_can_tower.platform_ladder_extends = 10
+bp_can_tower.pipe_length = 75
+
 bp_can_tower.make()
 can_tower = bp_can_tower.build()
 

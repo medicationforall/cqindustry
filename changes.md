@@ -2,6 +2,13 @@
 
 ## Main wip
 
+## 2.4.1
+* documentation clean up
+* Added render_floor parameter to can.CanPlatform
+  * Fixed platform height when render_floor is false. 
+* Split out the ring creation in can.CanTower into its own build function.
+* Added pipe_length parameter to can.CanTower
+
 ## 2.4.0
 * Upped cqterrain version to 3.4.1
 * Cleaned up instances where I was setting the callback parameter for workplane.eachpoint invocations.

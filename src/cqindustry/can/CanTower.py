@@ -16,6 +16,7 @@ class CanTower(Base):
         self.ring_width:float = 4.5
         self.platform_height:float = 20
         self.platform_ladder_extends:float = 10
+        self.pipe_length:float = 75
         
         #blueprints
         self.bp_ring:Ring = Ring()
@@ -56,19 +57,30 @@ class CanTower(Base):
         
         self.bp_rail.make(self.bp_platform)
         
-        self.pipe = straight(render_hollow=False, render_through_hole = False)
-        
-    def build(self):
-        ring = self.bp_ring.build()
-        soda_can = self.bp_can.build()
-        soda_can_cut = self.bp_chip_cut.build()
-        platform = self.bp_platform.build()
-        rail = self.bp_rail.build()
+        self.pipe = straight(length = self.pipe_length, render_hollow=False, render_through_hole = False)
 
-        scene = (
+    def build_ring_pipe_connector(self):
+        ring = self.bp_ring.build()
+        soda_can_cut = self.bp_chip_cut.build()
+        pipe = self.pipe
+
+        ring_pipe = (
             cq.Workplane("XY")
             .union(self.pipe)
             .cut(soda_can_cut.translate((0,0,self.bp_can.height /2)))
+            .union(ring)
+        )
+
+        return ring_pipe
+
+    def build(self):
+        soda_can = self.bp_can.build()
+        platform = self.bp_platform.build()
+        rail = self.bp_rail.build()
+        ring = self.build_ring_pipe_connector()
+
+        scene = (
+            cq.Workplane("XY")
             .union(ring)
             .add(platform.translate((0,0,self.bp_can.height))) 
             .add(rail.translate((0,0,self.bp_can.height)))
@@ -79,16 +91,12 @@ class CanTower(Base):
         return scene
     
     def build_plate(self):
-        ring = self.bp_ring.build()
-        soda_can = self.bp_can.build()
-        soda_can_cut = self.bp_chip_cut.build()
         platform = self.bp_platform.build()
         rail = self.bp_rail.build()
+        ring = self.build_ring_pipe_connector()
 
         scene = (
             cq.Workplane("XY")
-            .union(self.pipe)
-            .cut(soda_can_cut.translate((0,0,self.bp_can.height /2)))
             .union(ring)
             .add(platform.translate((0,self.can_diameter+self.ring_width+10,self.bp_platform.height/2))) 
             .add(rail.rotate((0,1,0),(0,0,0),180).translate((0,(self.can_diameter+self.ring_width+10)*2,self.bp_rail.height+(self.bp_platform.height/2))))

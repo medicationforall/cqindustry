@@ -7,8 +7,8 @@
 ### parameters
 * height: float
 * diameter: float
-* diameter: float
 * cut_height: float
+* render_floor: bool
 * tile_length: float
 * tile_width: float
 * tile_height: float
@@ -32,6 +32,8 @@ bp_can_top.height = 20
 bp_can_top.diameter = 75
 bp_can_top.cut_diameter = 66.5
 bp_can_top.cut_height = 10
+
+bp_can_top.render_floor = True
 bp_can_top.tile_length = 15
 bp_can_top.tile_width = 15
 bp_can_top.tile_height = 3
@@ -106,6 +108,7 @@ Orchestrator class for building Can Tower Kits.
 * ring_width: float
 * platform_height: float
 * platform_ladder_extends: float
+* pipe_length: float
 
 ### blueprints
 * bp_ring: [Ring](./chip.md#ring)
@@ -131,6 +134,7 @@ bp_can_tower.cut_padding = .5
 bp_can_tower.ring_width = 4.5
 bp_can_tower.platform_height = 20
 bp_can_tower.platform_ladder_extends = 10
+bp_can_tower.pipe_length = 75
 bp_can_tower.make()
 can_tower = bp_can_tower.build()
 
