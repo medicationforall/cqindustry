@@ -21,6 +21,12 @@ class CanRail(Base):
         self.support:cq.Workplane|None = None
         self.supports:cq.Workplane|None = None
         self.cut_rail:cq.Workplane|None = None
+
+    def calculate_cut_rail_height(self):
+        height = self.height
+        if self.support_height > self.height:
+            height = self.support_height
+        return height
         
     def __make_rail(self):
         if self.parent:
@@ -30,7 +36,8 @@ class CanRail(Base):
         
     def __make_cut_rail(self):
         if self.parent:
-            cut_rail = cq.Workplane("XY").box(self.parent.ladder_length, self.parent.diameter+(self.rail_width*2) , self.height)
+            height = self.calculate_cut_rail_height()
+            cut_rail = cq.Workplane("XY").box(self.parent.ladder_length, self.parent.diameter+(self.rail_width*2) , height)
             self.cut_rail = cut_rail
         
     def __make_support(self):
@@ -71,14 +78,14 @@ class CanRail(Base):
         super().build()
         if self.parent and self.rail and self.cut_rail and self.supports:
             parent_platform = self.parent.build()
+            cut_rail_height = self.calculate_cut_rail_height()
+            cut_translate = self.height-cut_rail_height/2
             scene = (
                 cq.Workplane("XY")
                 .union(self.rail.translate((0,0,self.height-self.rail_height/2)))
                 .union(self.rail.translate((0,0,self.height/2)))
                 .union(self.supports.translate((0,0,self.height-self.support_height/2)))
-                .cut(self.cut_rail.translate((0,0,self.height/2)))
-                
-            
+                .cut(self.cut_rail.translate((0,0,cut_translate)))
             ).translate((0,0,self.parent.height/2)).cut(parent_platform)
             return scene
         else:
