@@ -75,8 +75,9 @@ class CanRail(Base):
                 cq.Workplane("XY")
                 .union(self.rail.translate((0,0,self.height-self.rail_height/2)))
                 .union(self.rail.translate((0,0,self.height/2)))
-                .cut(self.cut_rail.translate((0,0,self.height/2)))
                 .union(self.supports.translate((0,0,self.height-self.support_height/2)))
+                .cut(self.cut_rail.translate((0,0,self.height/2)))
+                
             
             ).translate((0,0,self.parent.height/2)).cut(parent_platform)
             return scene
