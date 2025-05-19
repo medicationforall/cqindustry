@@ -2,6 +2,10 @@
 
 ## Main wip
 
+## 2.4.2
+* can.CanTower added render_rails parameter.
+  * bp_rails can be set to None.
+
 ## 2.4.1
 * documentation clean up
 * Added render_floor parameter to can.CanPlatform

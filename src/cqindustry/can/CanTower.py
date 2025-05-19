@@ -17,6 +17,8 @@ class CanTower(Base):
         self.platform_height:float = 20
         self.platform_ladder_extends:float = 10
         self.pipe_length:float = 75
+
+        self.render_rails:bool = True
         
         #blueprints
         self.bp_ring:Ring = Ring()
@@ -27,7 +29,7 @@ class CanTower(Base):
         self.bp_chip_cut:ChipCan = ChipCan()
         
         self.bp_platform:CanPlatform = CanPlatform()
-        self.bp_rail:CanRail = CanRail()
+        self.bp_rail:CanRail|None = CanRail()
         
         #shapes
         self.pipe:cq.Workplane|None = None
@@ -55,7 +57,8 @@ class CanTower(Base):
         self.bp_platform.ladder_height = self.platform_height + self.platform_ladder_extends
         self.bp_platform.make()
         
-        self.bp_rail.make(self.bp_platform)
+        if self.render_rails and self.bp_rail:
+            self.bp_rail.make(self.bp_platform)
         
         self.pipe = straight(length = self.pipe_length, render_hollow=False, render_through_hole = False)
 
@@ -76,30 +79,35 @@ class CanTower(Base):
     def build(self):
         soda_can = self.bp_can.build()
         platform = self.bp_platform.build()
-        rail = self.bp_rail.build()
+        
         ring = self.build_ring_pipe_connector()
 
         scene = (
             cq.Workplane("XY")
             .union(ring)
             .add(platform.translate((0,0,self.bp_can.height))) 
-            .add(rail.translate((0,0,self.bp_can.height)))
         )
 
+        if self.render_rails and self.bp_rail:
+            rail = self.bp_rail.build()
+            scene = scene.add(rail.translate((0,0,self.bp_can.height)))
+
         if self.render_can:
-            scene.add(soda_can.translate((0,0,self.bp_can.height /2)))
+            scene = scene.add(soda_can.translate((0,0,self.bp_can.height /2)))
         return scene
     
     def build_plate(self):
         platform = self.bp_platform.build()
-        rail = self.bp_rail.build()
         ring = self.build_ring_pipe_connector()
 
         scene = (
             cq.Workplane("XY")
             .union(ring)
             .add(platform.translate((0,self.can_diameter+self.ring_width+10,self.bp_platform.height/2))) 
-            .add(rail.rotate((0,1,0),(0,0,0),180).translate((0,(self.can_diameter+self.ring_width+10)*2,self.bp_rail.height+(self.bp_platform.height/2))))
         )
+
+        if self.render_rails and self.bp_rail:
+            rail = self.bp_rail.build()
+            scene = scene.add(rail.rotate((0,1,0),(0,0,0),180).translate((0,(self.can_diameter+self.ring_width+10)*2,self.bp_rail.height+(self.bp_platform.height/2))))
 
         return scene

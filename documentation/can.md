@@ -102,6 +102,7 @@ Orchestrator class for building Can Tower Kits.
 
 ### parameters
 * render_can: bool
+* render_rails: bool
 * can_height: float
 * can_diameter: float
 * cut_padding: float
@@ -128,6 +129,7 @@ from cqindustry.can import CanTower
 
 bp_can_tower = CanTower()
 bp_can_tower.render_can = False
+bp_can_tower.render_rails = True
 bp_can_tower.can_height = 122
 bp_can_tower.can_diameter = 66
 bp_can_tower.cut_padding = .5
