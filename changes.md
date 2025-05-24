@@ -5,6 +5,7 @@
 ## 2.4.2
 * can.CanTower added render_rails parameter.
   * bp_rails can be set to None.
+* can.CanTower added render_pipe parameter.
 * Changed build order for CanRail so that the cut operation happens after supports are added. 
   * calculate cut rail height
 

@@ -3,6 +3,7 @@ from cqindustry.can import CanTower
 
 bp_can_tower = CanTower()
 bp_can_tower.render_can = False
+bp_can_tower.render_pipe = True
 bp_can_tower.render_rails = True
 bp_can_tower.can_height = 122
 bp_can_tower.can_diameter = 66

@@ -19,6 +19,7 @@ class CanTower(Base):
         self.pipe_length:float = 75
 
         self.render_rails:bool = True
+        self.render_pipe:bool = True
         
         #blueprints
         self.bp_ring:Ring = Ring()
@@ -60,21 +61,28 @@ class CanTower(Base):
         if self.render_rails and self.bp_rail:
             self.bp_rail.make(self.bp_platform)
         
-        self.pipe = straight(length = self.pipe_length, render_hollow=False, render_through_hole = False)
+        if self.render_pipe:
+            self.pipe = straight(length = self.pipe_length, render_hollow=False, render_through_hole = False)
 
     def build_ring_pipe_connector(self):
         ring = self.bp_ring.build()
         soda_can_cut = self.bp_chip_cut.build()
         pipe = self.pipe
 
-        ring_pipe = (
-            cq.Workplane("XY")
-            .union(self.pipe)
-            .cut(soda_can_cut.translate((0,0,self.bp_can.height /2)))
+        scene = cq.Workplane("XY")
+
+        if self.render_pipe and pipe:
+            scene = (
+                scene.union(pipe)
+                .cut(soda_can_cut.translate((0,0,self.bp_can.height /2)))
+            )
+
+        scene = (
+            scene
             .union(ring)
         )
 
-        return ring_pipe
+        return scene
 
     def build(self):
         soda_can = self.bp_can.build()
