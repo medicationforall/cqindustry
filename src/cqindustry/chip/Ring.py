@@ -120,15 +120,20 @@ class Ring(Base):
 
     def build(self) -> cq.Workplane:
         super().build()
+
+        #print('build ring')
         scene = (
             cq.Workplane("XY")
             .union(self.ring)
         )
 
         if self.render_ladders and self.ladders and self.cut_ladders:
+            #print('build ring - union ladders')
             scene = (
                 scene
                 .cut(self.cut_ladders)
                 .union(self.ladders)
             )
+
+        #print('end build ring - return result')
         return scene

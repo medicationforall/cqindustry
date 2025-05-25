@@ -29,9 +29,7 @@ class RingConduit(Ring):
         self.pipe_padding:float = 1
         
     def _make_ladder(self):
-
         #print("make ring conduit ladder")
-        
         ladder = tile.conduit(
             length = self.ladder_height,
             width = self.ladder_length,
@@ -46,16 +44,18 @@ class RingConduit(Ring):
             pipe_padding = self.pipe_padding 
         ).rotate((0,0,1),(0,0,0),90).rotate((1,0,0),(0,0,0),90)
         
-        #ladder = cq.Workplane("XY").box(self.ladder_length, self.ladder_width, self.ladder_height)
+        #print('position the ladder')
         ladder = ladder.translate((
             0,
             self.cut_diameter/2+.6,
             self.ladder_height/2
         ))
 
+        #print('cut ring')
         if self.cut_ring:
             ladder = ladder.cut(self.cut_ring)
 
+        #print('add the ladders')
         ladders = (
             cq.Workplane()
             .union(ladder)
@@ -63,10 +63,3 @@ class RingConduit(Ring):
         )
 
         self.ladders = ladders
-        
-    def make(self, parent = None):
-        super().make()
-        
-    def build(self):
-        #print("build ring conduit ladder")
-        return super().build()

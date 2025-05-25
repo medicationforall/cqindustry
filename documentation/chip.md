@@ -84,6 +84,45 @@ tower_ex = bp_tower.build()
   
 ---
 
+## Conduit
+
+### parameters
+* frame:float = 1
+* frame_depth:float = 3
+* pipe_count:int = 2
+* pipe_radius:float = 4
+* pipe_inner_radius:float = 2
+* segment_length:float = 6
+* space:float = 4
+* pipe_padding:float = 1
+
+``` python
+import cadquery as cq
+from cqindustry.chip import Conduit
+
+bp_conduit = Conduit()
+bp_conduit.frame = 1
+bp_conduit.frame_depth = 3
+bp_conduit.pipe_count = 2
+bp_conduit.pipe_radius = 4
+bp_conduit.pipe_inner_radius = 2
+bp_conduit.segment_length = 6
+bp_conduit.space = 4
+bp_conduit.pipe_padding = 1
+bp_conduit.make()
+ex_conduit = bp_conduit.build()
+
+show_object(ex_conduit)
+```
+
+![](image/chiptower/02.png)
+
+* [source](../src/cqindustry/chip/Conduit.py)
+* [example](../example/chip/conduit.py)
+* [stl](../stl/chip_conduit_class.stl)
+
+---
+
 
 ## Guard Rail
 

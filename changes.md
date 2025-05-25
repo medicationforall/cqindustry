@@ -3,11 +3,22 @@
 ## Main wip
 
 ## 2.4.2
-* can.CanTower added render_rails parameter.
-  * bp_rails can be set to None.
-* can.CanTower added render_pipe parameter.
+* can.CanTowers.
+  * Added render_rails
+  * Added render_pipe
+  * Added render_platform
+  * Added render_ring
+  * bp_rail can be set to None.
+  * Refactored make function.
+  * Refactored build function.
+  * Fixed build_ring_pipe_connector issue when using the conduit ring type.
+    * Had to do with when the cut operation was applied to the pipe.
+  * Added can_tower_alt_ring example. 
 * Changed build order for CanRail so that the cut operation happens after supports are added. 
-  * calculate cut rail height
+  * Added calculate cut rail height
+*  chip package
+  * Refactored RingConduit
+  * Added Conduit class 
 
 ## 2.4.1
 * documentation clean up

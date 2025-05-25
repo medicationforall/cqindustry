@@ -104,6 +104,8 @@ Orchestrator class for building Can Tower Kits.
 * render_can: bool
 * render_pipe: bool
 * render_rails: bool
+* render_platform: bool
+* render_ring: bool
 * can_height: float
 * can_diameter: float
 * cut_padding: float
@@ -132,6 +134,8 @@ bp_can_tower = CanTower()
 bp_can_tower.render_can = False
 bp_can_tower.render_pipe = True
 bp_can_tower.render_rails = True
+bp_can_tower.render_platform = True
+bp_can_tower.render_ring = True
 bp_can_tower.can_height = 122
 bp_can_tower.can_diameter = 66
 bp_can_tower.cut_padding = .5
@@ -174,5 +178,40 @@ show_object(can_tower)
 * [example](../example/can/can_tower.py)
 * [stl](../stl/can_tower.stl)
 * [stl](../stl/can_tower_plate.stl)
+
+#### Alternate Ring Declaration
+
+``` python
+import cadquery as cq
+from cqindustry.can import CanTower
+from cqindustry.chip import RingConduit
+
+bp_can_tower = CanTower()
+bp_can_tower.render_can = False
+bp_can_tower.render_pipe = True
+bp_can_tower.render_rails = True
+bp_can_tower.render_platform = True
+bp_can_tower.render_ring = True
+bp_can_tower.can_height = 122
+bp_can_tower.can_diameter = 66
+bp_can_tower.cut_padding = .5
+bp_can_tower.ring_width = 4.5
+bp_can_tower.platform_height = 20
+bp_can_tower.platform_ladder_extends = 10
+bp_can_tower.pipe_length = 75
+
+bp_can_tower.bp_ring = RingConduit()
+
+bp_can_tower.make()
+can_tower = bp_can_tower.build()
+
+show_object(can_tower.translate((0,0,0)))
+```
+
+![](image/cantower/14.png)<br />
+
+* [example](../example/can/can_tower_alt_ring.py)
+* [stl](../stl/can_tower_alt_ring.stl)
+* [stl](../stl/can_tower_alt_ring_plate.stl)
 
 ---

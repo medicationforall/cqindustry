@@ -7,6 +7,8 @@ import example.can.can_platform
 import example.can.can_rail
 import example.can.can_tower
 import example.can.can_tower_set
+print('can_tower_alt_ring')
+import example.can.can_tower_alt_ring
 
 print("Chip Tower Examples")
 print("example.chip.chip_can")
@@ -29,6 +31,8 @@ print("example.chip.chip_tower_set_2")
 #import example.chip.chip_tower_set_2
 print("example.chip.chiptower_readme_example")
 import example.chip.chiptower_readme_example
+print("example.chip.conduit")
+import example.chip.conduit
 
 print('container examples')
 import example.container.container_frame
