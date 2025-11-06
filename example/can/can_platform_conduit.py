@@ -1,7 +1,7 @@
 import cadquery as cq
 from cqindustry.can import CanPlatform
 from cqterrain import tile
-from cqindustry.chip import Conduit
+from cqindustry.support import Conduit
 
 bp_can_top = CanPlatform()
 bp_can_top.height = 20

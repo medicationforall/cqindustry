@@ -98,7 +98,7 @@ tower_ex = bp_tower.build()
 
 ``` python
 import cadquery as cq
-from cqindustry.chip import Conduit
+from cqindustry.support import Conduit
 
 bp_conduit = Conduit()
 bp_conduit.frame = 1

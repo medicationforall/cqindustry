@@ -13,7 +13,7 @@
 # limitations under the License.
 
 import cadquery as cq
-from cqindustry.chip import Ring
+from . import Ring
 from cqterrain import tile
 
 class RingConduit(Ring):

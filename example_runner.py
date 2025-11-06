@@ -21,6 +21,8 @@ print("example.chip.ring")
 import example.chip.ring
 print("example.chip.ring_conduit")
 import example.chip.ring_conduit
+print("example.chip.ring_support")
+import example.chip.ring_support
 print("example.chip.guard_rail")
 import example.chip.guard_rail
 print("example.chip.guard_rail_platform")
@@ -31,8 +33,7 @@ print("example.chip.chip_tower_set_2")
 #import example.chip.chip_tower_set_2
 print("example.chip.chiptower_readme_example")
 import example.chip.chiptower_readme_example
-print("example.chip.conduit")
-import example.chip.conduit
+
 
 print('container examples')
 import example.container.container_frame
@@ -102,3 +103,10 @@ import example.power.spoolCladdingGreebled
 import example.power.spoolCladdingGreebledUnique
 import example.power.stairLift
 import example.power.steelFrame
+
+print('power examples')
+import example.support.conduit
+import example.support.basic
+import example.support.segmented
+import example.support.bolt_panel
+import example.support.strut

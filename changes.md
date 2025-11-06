@@ -2,8 +2,19 @@
 
 ## Main wip
 
+## 3.0.0
+* Upped cqterrain version to 3.5.1
+* Created support package.
+  * Moved conduit into support package.
+  * Added Basic
+  * Added Segmented
+  * Added BoltPanel
+  * Added Strut
+* chip package
+  * Added RingSupport 
+
 ## 2.4.2
-* can.CanTowers.
+* can.CanTower.
   * Added render_rails
   * Added render_pipe
   * Added render_platform
