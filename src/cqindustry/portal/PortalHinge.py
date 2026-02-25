@@ -13,7 +13,7 @@
 # limitations under the License.
 
 import cadquery as cq
-from cadqueryhelper import Hinge
+from cadqueryhelper.hinge import Hinge
 
 class PortalHinge(Hinge):
     def __init__(self):

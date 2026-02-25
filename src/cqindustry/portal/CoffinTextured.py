@@ -14,7 +14,7 @@
 
 import cadquery as cq
 from . import BaseCoffin
-from cadqueryhelper import irregular_grid
+from cadqueryhelper.grid import irregular_grid
 
 class CoffinTextured(BaseCoffin):
     def __init__(self):

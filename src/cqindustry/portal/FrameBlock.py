@@ -13,7 +13,8 @@
 # limitations under the License.
 
 import cadquery as cq
-from cadqueryhelper import shape, irregular_grid
+from cadqueryhelper import shape
+from cadqueryhelper.grid import irregular_grid
 from . import Frame
 from cqterrain.shieldwall import CapGreeble
 

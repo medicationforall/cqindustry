@@ -15,7 +15,7 @@
 
 import cadquery as cq
 from . import BaseHexagon, make_hexagon
-from cadqueryhelper import series
+from cadqueryhelper.grid import series
 import math
 
 class VentHexagon(BaseHexagon):

@@ -2,6 +2,9 @@
 
 ## Main wip
 
+## 3.0.1
+* Updated cqterrain to version 3.6.2
+
 ## 3.0.0
 * Upped cqterrain version to 3.5.1
 * Created support package.

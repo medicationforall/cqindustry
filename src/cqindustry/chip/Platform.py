@@ -13,7 +13,8 @@
 # limitations under the License.
 
 import cadquery as cq
-from cadqueryhelper import Base, shape, series, grid
+from cadqueryhelper import Base, shape
+from cadqueryhelper.grid import series, make_grid
 import math
 
 class Platform(Base):
@@ -158,7 +159,7 @@ class Platform(Base):
         rows:int = math.floor((self.length-self.height) / (self.floor_tile_size+self.floor_tile_padding))
         colums:int = math.floor((self.width-self.height) / ((self.floor_tile_size+self.floor_tile_padding)/2))
 
-        diamonds:cq.Workplane = grid.make_grid(
+        diamonds:cq.Workplane = make_grid(
             diamond,
             [self.floor_tile_size+self.floor_tile_padding, (self.floor_tile_size+self.floor_tile_padding)/2],
             rows = rows+2,

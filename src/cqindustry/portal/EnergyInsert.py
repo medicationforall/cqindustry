@@ -13,7 +13,8 @@
 # limitations under the License.
 
 import cadquery as cq
-from cadqueryhelper import Base, shape, randomized_rotation_grid
+from cadqueryhelper import Base, shape
+from cadqueryhelper.grid import randomized_rotation_grid
 from cqterrain.damage import uneven_plane
 from cqterrain.tile import truchet_circle_three
 from typing import Tuple
