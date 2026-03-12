@@ -87,24 +87,29 @@ import example.portal.rampGreebled
 import example.portal.rotation_demo
 
 print('power examples')
+print('controlPlatform')
 import example.power.controlPlatform
 import example.power.controlPlatformAlt
 import example.power.controlPlatformPrint
+print('cradle')
 import example.power.cradle_tall
 import example.power.cradle
+print('powerstation')
 import example.power.powerstationGreebled
 import example.power.powerStationGreebledUniquePanels
 import example.power.powerStationGreebledUniquePanelsAssembly
 import example.power.powerStationPlain
 import example.power.powerStationPowerLineMulti
 import example.power.powerStations_sidebyside
+print('cladding')
 import example.power.spoolCladding
 import example.power.spoolCladdingGreebled
 import example.power.spoolCladdingGreebledUnique
+print('stairlift')
 import example.power.stairLift
 import example.power.steelFrame
 
-print('power examples')
+print('support examples')
 import example.support.conduit
 import example.support.basic
 import example.support.segmented

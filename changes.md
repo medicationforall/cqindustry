@@ -2,6 +2,10 @@
 
 ## Main wip
 
+## 3.1.0
+* Testing for packaging and deploying to pypi.
+* Added PACKAGE_README.md
+
 ## 3.0.1
 * Updated cqterrain to version 3.6.2
 

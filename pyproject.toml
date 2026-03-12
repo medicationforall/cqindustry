@@ -3,23 +3,25 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
+version = "3.1.0"
 name = "cqindustry"
-version = "3.0.1"
+description = "Python Library for building Industrial terrain"
+
 authors = [
   { name="James Adams", email="inklink28@gmail.com" }
 ]
-description = "Python Library for building Industrial terrain"
-readme = "README.md"
-license = { file="LICENSE" }
-requires-python = ">=3.10"
+
+readme = "PACKAGE_README.md"
+license = "Apache-2.0"
+
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: Apache Software License",
     "Operating System :: OS Independent"
 ]
 
+requires-python = ">=3.10"
 dependencies = [
-'cqterrain @ git+https://github.com/medicationforall/cqterrain@3.6.2',
+'cqterrain==3.8.0'
 ]
 
 
