@@ -2,6 +2,15 @@
 
 ## Main wip
 
+## 3.1.1
+* Can package 
+  * Added RoundPlatform
+  * Added RoundPlatformGreebledCircles
+  * Added StairSegment
+  * Added CanTowerStairs
+  * Updated documentation
+* README.md - Added version pic.
+
 ## 3.1.0
 * Testing for packaging and deploying to pypi.
 * Added PACKAGE_README.md

@@ -8,6 +8,7 @@
 * [Platform](#platform)
 * [Ring](#ring)
 * [Ring Conduit](#ring-conduit)
+* [Stair Segment](#stair-segment)
 
 ---
 
@@ -323,7 +324,7 @@ platform = bp.build()
 
 ``` python
 import cadquery as cq
-from cqindustry import Ring
+from cqindustry.chip import Ring
 
 bp_ring = Ring()
 bp_ring.cut_diameter = 76
@@ -378,7 +379,7 @@ Extends Ring class
 
 ``` python
 import cadquery as cq
-from cqindustry import RingConduit
+from cqindustry.chip import RingConduit
 
 bp_ring = RingConduit()
 bp_ring.cut_diameter = 76
@@ -408,5 +409,69 @@ ring = bp_ring.build()
 * [source](../src/cqindustry/chip/RingConduit.py)
 * [example](../example/chip/ring_conduit.py)
 * [stl](../stl/ring_conduit.stl)
+
+---
+
+## Stair Segment
+
+### parameters
+* diameter:float
+* diameter_margin:float
+* height:float
+* render_can:bool
+* render_stairs:bool
+* render_ladder:bool
+* stair_count:int
+* ramp_width:float
+* platform_height:float
+* platform_angle:float
+* ring_rotate:float
+* ring_padding:float
+* ring_height:float
+
+### blue prints
+* bp_can:Base|None = self.init_can()
+* bp_ring:Base|None = self.init_ring()
+
+``` python
+import cadquery as cq
+from cqindustry.can import StairSegment
+
+bp_segment = StairSegment()
+
+bp_segment.diameter = 73
+bp_segment.diameter_margin = 0.5
+bp_segment.height = 75 - 4
+
+bp_segment.render_can = False
+bp_segment.render_stairs = True
+bp_segment.render_ladder = True
+bp_segment.stair_count = 11
+bp_segment.ramp_width = 64
+
+bp_segment.platform_height = 4
+bp_segment.platform_angle = 180
+
+bp_segment.ring_rotate = -45
+bp_segment.ring_padding = 10
+bp_segment.ring_height = 10
+
+#blueprints
+#self.bp_can:Base|None = self.init_can()
+#self.bp_ring:Base|None = self.init_ring()
+
+bp_segment.make()
+
+show_object(ex_segment)
+
+ex_segment = bp_segment.build()
+```
+
+![](image/can/01.png)
+
+* [source](../src/cqindustry/can/StairSegment.py)
+* [example](../example/can/stair_segment.py)
+* [stl](../stl/can_stair_segment.stl)
+
 
 ---

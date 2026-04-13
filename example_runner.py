@@ -9,6 +9,10 @@ import example.can.can_tower
 import example.can.can_tower_set
 print('can_tower_alt_ring')
 import example.can.can_tower_alt_ring
+import example.can.round_platform
+import example.can.round_platform_greebled_circles
+import example.can.stair_segment
+import example.can.can_tower_stairs
 
 print("Chip Tower Examples")
 print("example.chip.chip_can")

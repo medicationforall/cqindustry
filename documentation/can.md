@@ -2,6 +2,17 @@
 
 ![](image/cantower/08.png)<br />
 
+---
+## Index
+* [Can Platform](#can-platform)
+* [Can Rail](#can-rail)
+* [Can Tower](#can-tower)
+* [Can Tower Stairs](#can-tower-stairs)
+* [Round Platform](#round-platform)
+* [Round Platform Greebled Circles](#round-platform-greebled-circles)
+* [Stair Segment](#stair-segment)
+---
+
 ## Can Platform
 
 ### parameters
@@ -213,5 +224,192 @@ show_object(can_tower.translate((0,0,0)))
 * [example](../example/can/can_tower_alt_ring.py)
 * [stl](../stl/can_tower_alt_ring.stl)
 * [stl](../stl/can_tower_alt_ring_plate.stl)
+
+---
+
+## Can Tower Stairs
+
+### parameters
+* diameter: float
+* height: float
+* render_can: bool
+* render_pipe: bool
+
+### blueprints
+* bp_can:base|None = [ChipCan](./chip.md#chipcan)()
+* bp_floor_one:base|None = [StairSegment](#stair-segment)()
+* bp_floor_two:base|None = [StairSegment](#stair-segment)()
+* bp_floor_three:base|None = [StairSegment](#stair-segment)()
+
+``` python
+import cadquery as cq
+from cqindustry.can import CanTowerStairs
+
+bp_tower = CanTowerStairs()
+
+bp_tower.diameter = 73
+bp_tower.height = 194
+
+bp_tower.render_can = True
+bp_tower.render_pipe = True
+bp_tower.make()
+
+ex_tower = bp_tower.build()
+
+show_object(ex_tower)
+```
+
+![](image/can/02.png)<br />
+
+* [source](../src/cqindustry/can/CanTowerStairs.py)
+* [example](../example/can/can_tower_stairs.py)
+* [stl](../stl/can_tower_stairs.stl)
+
+---
+
+## Round Platform
+
+### parameters
+* inner_diameter: float
+* outer_diameter: float
+* height: float
+* angle: float
+
+``` python
+import cadquery as cq
+from cqindustry.can import RoundPlatform
+
+bp_platform = RoundPlatform()
+
+bp_platform.inner_diameter = 30
+bp_platform.outer_diameter = 55
+bp_platform.height = 4
+bp_platform.angle = 90
+
+bp_platform.make()
+
+ex_platform = bp_platform.build()
+
+show_object(ex_platform)
+```
+
+![](image/can/03.png)<br />
+
+* [source](../src/cqindustry/can/RoundPlatform.py)
+* [example](../example/can/round_platform.py)
+* [stl](../stl/can_round_platform.stl)
+
+---
+
+## Round Platform Greebled Circles
+
+### parameters
+* tile_height: float
+* frame_width: float
+* spacing: float
+* taper: float|None
+* rows: int
+* offset: float
+* circle_diameter: float
+* cut_circle_diameter: float
+* circle_max_index: float
+
+``` python
+import cadquery as cq
+from cqindustry.can import RoundPlatformGreebledCircles
+
+bp_platform = RoundPlatformGreebledCircles()
+
+bp_platform.inner_diameter = 40
+bp_platform.outer_diameter = 100
+bp_platform.width = 25
+bp_platform.height = 4
+bp_platform.tile_height = 1
+bp_platform.spacing = 10
+bp_platform.rows = 11
+bp_platform.taper = None
+bp_platform.offset = -1
+bp_platform.angle = 180
+bp_platform.tile_height = 2
+bp_platform.circle_diameter = 2.8
+bp_platform.cut_circle_diameter = 2
+bp_platform.circle_max_index = 1
+
+bp_platform.make()
+
+ex_platform = bp_platform.build()
+
+show_object(ex_platform)
+```
+
+![](image/can/04.png)<br />
+
+* [source](../src/cqindustry/can/RoundPlatformGreebledCircles.py)
+* [example](../example/can/round_platform_greebled_circles.py)
+* [stl](../stl/can_round_platform_greebled_stairs.stl)
+
+---
+
+## Stair Segment
+
+### parameters
+* diameter:float
+* diameter_margin:float
+* height:float
+* render_can:bool
+* render_stairs:bool
+* render_ladder:bool
+* stair_count:int
+* ramp_width:float
+* platform_height:float
+* platform_angle:float
+* ring_rotate:float
+* ring_padding:float
+* ring_height:float
+
+### blueprints
+* bp_can: Base|None = [ChipCan](./chip.md#chipcan)()
+* bp_ring: Base|None = [Ring](./chip.md#ring)()
+* bp_platform: Base|None = [RoundPlatform](#round-platform)()
+
+``` python
+import cadquery as cq
+from cqindustry.can import StairSegment
+
+bp_segment = StairSegment()
+
+bp_segment.diameter = 73
+bp_segment.diameter_margin = 0.5
+bp_segment.height = 75 - 4
+
+bp_segment.render_can = False
+bp_segment.render_stairs = True
+bp_segment.render_ladder = True
+bp_segment.stair_count = 11
+bp_segment.ramp_width = 64
+
+bp_segment.platform_height = 4
+bp_segment.platform_angle = 180
+
+bp_segment.ring_rotate = -45
+bp_segment.ring_padding = 10
+bp_segment.ring_height = 10
+
+#blueprints
+#self.bp_can:Base|None = self.init_can()
+#self.bp_ring:Base|None = self.init_ring()
+
+bp_segment.make()
+
+ex_segment = bp_segment.build()
+
+show_object(ex_segment)
+```
+
+![](image/can/05.png)<br />
+
+* [source](../src/cqindustry/can/StairSegment.py)
+* [example](../example/can/stair_segment.py)
+* [stl](../stl/can_stair_segment.stl)
 
 ---
