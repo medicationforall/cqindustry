@@ -2,6 +2,21 @@
 
 ![](./image/dome/cover.png)
 
+---
+## Index
+* [Dome](#dome)
+* [Base Hexagon](#base-hexagon)
+* [Base entagon](#base-pentagon)
+* [Cut Key Hexagon](#cut-key-hexagon)
+* [Cut Key Pentagon](#cut-key-pentagon)
+* [Door Hexagon](#door-hexagon)
+* [Make Angled Steps](#make_angled_steps)
+* [Stairs](#stairs)
+* [Vent hexagon](#vent-hexagon)
+* [Window Frame](#window-frame)
+
+---
+
 ## Dome
 Builder class, Makes a complete dome with greebles. 
 Inherits from Base.

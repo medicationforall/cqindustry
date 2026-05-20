@@ -3,6 +3,7 @@
 ## Index
 * [ChipCan](#chipcan)
 * [ChipTower](#chiptower)
+* [Conduit](#conduit)
 * [Guard Rail](#guard-rail)
 * [Make Guard Rails](#make-guard-rails)
 * [Platform](#platform)

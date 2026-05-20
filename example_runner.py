@@ -38,6 +38,10 @@ print("example.chip.chip_tower_set_2")
 print("example.chip.chiptower_readme_example")
 import example.chip.chiptower_readme_example
 
+print('depot examples')
+import example.depot.container
+import example.depot.depot
+import example.depot.depot_plate
 
 print('container examples')
 import example.container.container_frame

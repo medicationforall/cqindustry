@@ -2,6 +2,20 @@
 
 ![Station Mockup](./image/power/powerstation/36.png)
 
+---
+## Index
+* [ControlPlatform](#controlplatform)
+* [ControlPlatformPrint](#controlplatformprint)
+* [Cradle](#cradle)
+* [PowerStation](#powerstation)
+* [SpoolCladding](#spoolcladding)
+* [SpoolCladdingGreebled](#spoolcladdinggreebled)
+* [SpoolCladdingGreebledUnique](#spoolcladdinggreebledunique)
+* [StairLift](#stairlift)
+* [SteelFrame](#steelframe)
+
+---
+
 ## ControlPlatform
 Builder class for making a control platform. Inherits from Base.
 The generated shape is one part.
@@ -468,7 +482,7 @@ show_object(scene)
 * wave_function - wave.square #wave.triangle wave.sine
 * wave_segment_length: float
 
-## blueprints
+### blueprints
 * bp_stairs = Stairs
 
 ``` python

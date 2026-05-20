@@ -2,6 +2,12 @@
 
 ## Main wip
 
+## 3.1.2
+* depot package
+  * Added Container
+  * Added Depot
+* Added documentation indexes
+
 ## 3.1.1
 * Can package 
   * Added RoundPlatform
