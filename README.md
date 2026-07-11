@@ -200,6 +200,8 @@ cq.exporters.export(power,f"stl/powerStation_seed_{bp_power.bp_cladding.seed}.st
 	* [Dome](documentation/dome.md)
     * [Portal](documentation/portal.md)
 	* [Power](documentation/power.md)
+	* [Segment](documentation/segment.md)
+	* [Wall](documentation/wall.md)
 
 
 ## Changes

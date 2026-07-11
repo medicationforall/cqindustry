@@ -117,9 +117,16 @@ print('stairlift')
 import example.power.stairLift
 import example.power.steelFrame
 
+print('segment examples')
+import example.segment.segment_floor
+
 print('support examples')
 import example.support.conduit
 import example.support.basic
 import example.support.segmented
 import example.support.bolt_panel
 import example.support.strut
+
+print('wall examples')
+import example.wall.corridor_wall
+import example.wall.corridor_wall_greebled

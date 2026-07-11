@@ -9,6 +9,8 @@
 * [Dome](./dome.md)
 * [Portal](./portal.md)
 * [Power](./power.md)
+* [Segment](./segment.md)
+* [Wall](./wall.md)
 
 ---
 

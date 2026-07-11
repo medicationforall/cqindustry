@@ -2,6 +2,13 @@
 
 ## Main wip
 
+## 3.1.3
+* Added segment package
+  * Added SegmentWall
+* Added wall package
+  * Added CorridorWall
+  * Added CorridorWallGreebled
+
 ## 3.1.2
 * depot package
   * Added Container
