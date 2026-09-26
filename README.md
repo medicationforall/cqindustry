@@ -3,7 +3,7 @@ Python library for making 3d printable Industrial terrain using cadquery.
 
 ---
 
-![Version 3.1.2](./documentation/image/version/3.1.2.png)
+![Version 3.1.4](./documentation/image/version/3.1.4.png)
 
 ---
 
@@ -193,6 +193,7 @@ cq.exporters.export(power,f"stl/powerStation_seed_{bp_power.bp_cladding.seed}.st
 
 ## Project Documention
 * [Documentation](documentation/documentation.md)
+    * [Barricade](documentation/barricade.md)
 	* [Can](documentation/can.md)
 	* [Chip](documentation/chip.md)
     * [Container](documentation/container.md)

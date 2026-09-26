@@ -1,4 +1,8 @@
 
+print('Barricade')
+import example.barricade.stylized_panels
+import example.barricade.wall
+
 print('Bridge Examples')
 import example.bridge.straight
 

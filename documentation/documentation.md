@@ -2,6 +2,7 @@
 
 ## Index
 
+* [Barricade](./barricade.md)
 * [Can](./can.md)
 * [Chip](./chip.md)
 * [Container](./container.md)
