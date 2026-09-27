@@ -2,6 +2,7 @@
 print('Barricade')
 import example.barricade.stylized_panels
 import example.barricade.wall
+import example.barricade.wall_ruin_corner
 
 print('Bridge Examples')
 import example.bridge.straight

@@ -4,6 +4,7 @@
 ## Index
 * [Stylized](#stylized-panels)
 * [Wall](#wall)
+* [Wall Ruin Corner](#wall-ruin-corner)
 ---
 
 ## Stylized Panels
@@ -182,9 +183,92 @@ show_object(ex_wall)
 
 ![](image/barricade/05.png)
 
-
-
-
 * [source](../src/cqindustry/barricade/Wall.py)
 * [example](../example/barricade/wall.py)
 * [stl](../stl/barricade_wall.stl)
+
+
+---
+
+## Wall Ruin Corner
+Ruined Corner Wall class that inherits from [Wall](#wall).
+
+### parameters
+* length: float
+* width: float
+* height: float
+* ruin_seed: str|None
+* beam_cut_seed: str|None
+* panel_cut_seed: str|None
+* ruin_shift: tuple[float,float,float]
+* vertical_beam_count: int
+* debug: bool
+* direction: Literal['left','right']
+
+
+``` python
+import cadquery as cq
+from cqindustry.barricade import WallRuinCorner
+
+bp_wall = WallRuinCorner()
+bp_wall.render_grid = True
+bp_wall.panel_seed ='mess'
+bp_wall.length:float = 30
+bp_wall.width:float = 30
+bp_wall.height:float = 25
+bp_wall.vertical_beam_count = 1
+bp_wall.direction = 'right'
+bp_wall.debug = False
+
+bp_wall.ruin_shift = (-3,3,1)
+bp_wall.vertical_beam_count = 1
+
+bp_wall.seed = 'ascension'
+bp_wall.panel_seed = "downfall"
+bp_wall.panel_count = 1
+
+bp_wall.make()
+
+ex_wall = bp_wall.build()
+
+show_object(ex_wall)
+```
+
+![](image/barricade/08.png)
+
+### assembly example
+Makes each compenent into separate layer.
+
+``` python
+import cadquery as cq
+from cqindustry.barricade import WallRuinCorner
+
+bp_wall = WallRuinCorner()
+bp_wall.render_grid = True
+bp_wall.panel_seed ='mess'
+bp_wall.length:float = 30
+bp_wall.width:float = 30
+bp_wall.height:float = 25
+bp_wall.vertical_beam_count = 1
+bp_wall.direction = 'left'
+bp_wall.debug = False
+
+bp_wall.ruin_shift = (-3,3,1)
+bp_wall.vertical_beam_count = 1
+
+bp_wall.seed = 'ascension'
+bp_wall.panel_seed = "downfall"
+bp_wall.panel_count = 1
+
+bp_wall.make()
+
+ex_wall = bp_wall.build_assembly()
+
+show_object(ex_wall)
+```
+
+![](image/barricade/07.png)
+
+* [source](../src/cqindustry/barricade/WallRuinCorner.py)
+* [example](../example/barricade/wall_ruin_corner.py)
+* [stl](../stl/barricade_wall_ruin_corner.stl)

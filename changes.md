@@ -7,6 +7,7 @@
 * Added barricade package
   * Added stylized_panels
   * Added Wall 
+  * Added WallRuinCorner
 
 ## 3.1.3
 * Added segment package

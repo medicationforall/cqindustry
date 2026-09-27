@@ -14,7 +14,7 @@
 
 import cadquery as cq
 from cadqueryhelper import Base
-from cqterrain.minibase import slot, slot_uneven
+from cqterrain.minibase import slot, ellipse, slot_uneven, circle_uneven
 from cadqueryhelper.shape import i_beam
 
 from cadqueryhelper.grid import (
@@ -101,7 +101,11 @@ class Wall(Base):
     def calculate_x_space(self)->float:
         vert_length = self.length - self.length_inset
         x_count = self.vertical_beam_count
-        x_space = vert_length/(x_count-1)
+
+        if x_count == 1:
+            x_space = vert_length
+        else:
+            x_space = vert_length/(x_count-1)
         return x_space
     
     def make_outline(self)->cq.Workplane:
@@ -114,20 +118,36 @@ class Wall(Base):
         self.outline = outline
 
     def make_base(self):
-        base = slot_uneven(
-            length = self.length,
-            width = self.width,
-            base_height = self.base_height,
-            taper = -1,
-            render_magnet = True,  
-            magnet_diameter = 3, 
-            magnet_height = 2,
-            detail_height = 2,
-            uneven_height = 3,
-            peak_count = (9,10),
-            segments = 6,
-            seed = self.seed
-        ).translate((0,0,-self.base_height/2))
+
+        if self.length == self.width:
+            base = circle_uneven(
+                diameter = self.length,
+                base_height = self.base_height,
+                taper = -1,
+                render_magnet = True,  
+                magnet_diameter = 3, 
+                magnet_height = 2,
+                detail_height = 2,
+                uneven_height = 3,
+                peak_count = (9,10),
+                segments = 6,
+                seed = self.seed
+            ).translate((0,0,-self.base_height/2))
+        else:
+            base = slot_uneven(
+                length = self.length,
+                width = self.width,
+                base_height = self.base_height,
+                taper = -1,
+                render_magnet = True,  
+                magnet_diameter = 3, 
+                magnet_height = 2,
+                detail_height = 2,
+                uneven_height = 3,
+                peak_count = (9,10),
+                segments = 6,
+                seed = self.seed
+            ).translate((0,0,-self.base_height/2))
         self.base = base
         
     def make_vertical_beams(self):
@@ -150,11 +170,15 @@ class Wall(Base):
         vert_length = self.length - self.length_inset
         vertical_beams = cq.Workplane("XY")
         x_count = self.vertical_beam_count
-        x_space = vert_length/(x_count-1)
+        x_space = self.calculate_x_space()
+
         for i in range(x_count):
             vertical_beams = vertical_beams.add(vertical_beam.translate((i*x_space,0,0)))
         
-        self.vertical_beams = vertical_beams.translate((-vert_length/2,0,0))
+        if x_count  >   1:
+            self.vertical_beams = vertical_beams.translate((-vert_length/2,0,0))
+        else:
+            self.vertical_beams = vertical_beams
         
     def make_horizontal_beams(self):
         x_count = self.vertical_beam_count
