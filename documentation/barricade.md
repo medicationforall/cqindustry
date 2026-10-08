@@ -5,6 +5,7 @@
 * [Stylized](#stylized-panels)
 * [Wall](#wall)
 * [Wall Ruin Corner](#wall-ruin-corner)
+* [Wall Ruin Segment]()
 ---
 
 ## Stylized Panels
@@ -272,3 +273,118 @@ show_object(ex_wall)
 * [source](../src/cqindustry/barricade/WallRuinCorner.py)
 * [example](../example/barricade/wall_ruin_corner.py)
 * [stl](../stl/barricade_wall_ruin_corner.stl)
+
+---
+
+## Wall Ruin Segment
+
+
+### parameters
+* length: float
+* width: float
+* height: float
+* ruin_seed: str|None
+* panel_cut_seed: str|None
+* ruin_shift: tuple[float, float, float]
+* vertical_beam_count: int
+* debug: bool =
+* direction: Literal['top','bottom']
+* ruin_height: float
+* ruin_points: float
+* ruin_padding: float
+
+``` python
+import cadquery as cq
+from cqindustry.barricade import WallRuinSegment
+
+bp_wall = WallRuinSegment()
+bp_wall.seed = "newSelf"
+bp_wall.length = 75
+bp_wall.width= 30
+bp_wall.height = 25
+bp_wall.ruin_seed = None
+bp_wall.panel_cut_seed = None
+bp_wall.ruin_shift = (-1,3,1)
+bp_wall.vertical_beam_count = 2
+
+bp_wall.debug = False
+bp_wall.direction = 'top'
+bp_wall.ruin_height = 12.5
+bp_wall.ruin_points= 7
+bp_wall.ruin_padding = -10
+
+bp_wall.make()
+
+ex_wall = bp_wall.build()
+
+show_object(ex_wall)
+```
+
+![](image/barricade/09.png)
+
+## assembly example
+``` python
+import cadquery as cq
+from cqindustry.barricade import WallRuinSegment
+
+bp_wall = WallRuinSegment()
+bp_wall.seed = "wayToTheTop"
+bp_wall.length = 75
+bp_wall.width= 30
+bp_wall.height = 25
+bp_wall.ruin_seed = None
+bp_wall.panel_cut_seed = None
+bp_wall.ruin_shift = (-1,3,1)
+bp_wall.vertical_beam_count = 2
+
+bp_wall.debug = False
+bp_wall.direction = 'top'
+bp_wall.ruin_height = 12.5
+bp_wall.ruin_points= 7
+bp_wall.ruin_padding = -10
+
+bp_wall.make()
+
+ex_wall = bp_wall.build()
+
+show_object(ex_wall)
+```
+
+![](image/barricade/10.png)
+
+## bottom example
+``` python
+import cadquery as cq
+from cqindustry.barricade import WallRuinSegment
+
+bp_wall = WallRuinSegment()
+bp_wall.seed = "lost"
+bp_wall.length = 75
+bp_wall.width= 30
+bp_wall.height = 25
+bp_wall.ruin_seed = None
+bp_wall.panel_cut_seed = None
+bp_wall.ruin_shift = (-1,3,1)
+bp_wall.vertical_beam_count = 2
+
+bp_wall.debug = False
+bp_wall.direction = 'bottom'
+bp_wall.ruin_height = 25
+bp_wall.ruin_points= 7
+bp_wall.ruin_padding = -10
+
+bp_wall.make()
+
+ex_wall = bp_wall.build()
+
+show_object(ex_wall)
+```
+
+![](image/barricade/11.png)
+
+
+
+
+* [source](../src/cqindustry/barricade/WallRuinSegment.py)
+* [example](../example/barricade/wall_ruin_segment.py)
+* [stl](../stl/barricade_wall_ruin_segment.stl)

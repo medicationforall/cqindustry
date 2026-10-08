@@ -16,6 +16,7 @@ import cadquery as cq
 from . import Wall
 from cadqueryhelper import Base
 from cqterrain.ruin import ruin_corner_random
+from typing import Literal
 
 class WallRuinCorner(Wall):
     def __init__(self):
@@ -27,16 +28,16 @@ class WallRuinCorner(Wall):
         self.ruin_seed:str|None = None
         self.beam_cut_seed:str|None = None
         self.panel_cut_seed:str|None = None
-        self.ruin_shift = (-3,3,1)
-        self.vertical_beam_count = 1
+        self.ruin_shift:tuple[float, float, float] = (-3,3,1)
+        self.vertical_beam_count:int = 1
         
         self.debug:bool = False
         self.direction:Literal['left','right']= 'right'
         
         #shapes
-        self.ruin_corner = None
-        self.beam_cut = None
-        self.panel_cut = None
+        self.ruin_corner:cq.Workplane|None = None
+        self.beam_cut:cq.Workplane|None= None
+        self.panel_cut:cq.Workplane|None = None
         self.outline:cq.Workplane|None = None
         
     def make_ruin_corner(self):

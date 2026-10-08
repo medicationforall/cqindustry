@@ -2,12 +2,13 @@
 
 ## Main wip
 
-## 3.3.4
+## 3.1.4
 * Added missing license blocks
 * Added barricade package
   * Added stylized_panels
   * Added Wall 
   * Added WallRuinCorner
+  * Added WallRuinSegment
 
 ## 3.1.3
 * Added segment package
